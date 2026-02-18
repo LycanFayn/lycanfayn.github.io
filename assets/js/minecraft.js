@@ -1,5 +1,5 @@
 //based on a pen by @robinselmer
-var url = "https://api.minetools.eu/ping/atm10.lexicon.quest"; //insert  server here
+var url = "https://api.minetools.eu/ping/atmons.lexicon.quest"; //insert  server here
 
 $.getJSON(url, function(r) {
   //data is the JSON string
