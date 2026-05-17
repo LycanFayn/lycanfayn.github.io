@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stardew Gift Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --panel: #16213e;
+    --card: #0f3460;
+    --accent: #e94560;
+    --gold: #f5c842;
+    --green: #4caf50;
+    --blue: #5bc0eb;
+    --purple: #9b5de5;
+    --pink: #f15bb5;
+    --muted: #8899aa;
+    --text: #e8e8f0;
+    --textdim: #aabbcc;
+    --border: #2a3a5e;
+    --love: #ff6b9d;
+    --like: #ffd166;
+    --neutral: #6c757d;
+    --dislike: #a0522d;
+    --hate: #c0392b;
+    --removed: #2a2a4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  header {
+    text-align: center;
+    padding: 1.2rem 1rem 0.8rem;
+    border-bottom: 2px solid var(--gold);
+    background: #12122a;
+    position: relative;
+  }
+
+  header h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+    color: var(--gold);
+    text-shadow: 3px 3px 0 #7a6010, 0 0 20px #f5c84244;
+    letter-spacing: 2px;
+    line-height: 1.6;
+  }
+
+  header p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  .stars {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+  }
+  .stars-left { left: 1.5rem; }
+  .stars-right { right: 1.5rem; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    gap: 0;
+    height: calc(100vh - 90px);
+  }
+
+  .panel {
+    background: var(--panel);
+    border-right: 2px solid var(--border);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel:last-child {
+    border-right: none;
+    border-left: 2px solid var(--border);
+  }
+
+  .panel-header {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.52rem;
+    color: var(--gold);
+    padding: 0.7rem 0.8rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    background: #12122a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    letter-spacing: 1px;
+  }
+
+  .panel-hint {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 3px;
+    letter-spacing: 0;
+    font-style: italic;
+  }
+
+  .search-wrap {
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 52px;
+    background: var(--panel);
+    z-index: 9;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: #0a0a1f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.5rem;
+    outline: none;
+  }
+  .search-wrap input:focus { border-color: var(--gold); }
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  .item-list, .villager-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.4rem;
+  }
+
+  .item-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.76rem;
+    padding: 0.3rem 0.5rem;
+    margin-bottom: 3px;
+    cursor: pointer;
+    transition: all 0.12s;
+    position: relative;
+  }
+
+  .item-btn:hover { border-color: var(--gold); background: #1a3060; }
+
+  .item-btn.removed {
+    background: var(--removed);
+    border-color: #33334a;
+    color: #4a4a6a;
+    text-decoration: line-through;
+  }
+
+  .item-btn .item-emoji {
+    margin-right: 4px;
+  }
+
+  .item-cat {
+    font-size: 0.6rem;
+    color: var(--muted);
+    font-family: 'Press Start 2P', monospace;
+    padding: 0.4rem 0.3rem 0.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .villager-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.55rem;
+    margin-bottom: 3px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .villager-btn:hover { border-color: var(--blue); }
+
+  .villager-btn.hidden {
+    background: var(--removed);
+    border-color: #33334a;
+    color: #4a4a6a;
+  }
+
+  .villager-btn .v-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+  }
+
+  .center-panel {
+    overflow-y: auto;
+    padding: 0.6rem;
+    background: #13132a;
+  }
+
+  .center-header {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    color: var(--gold);
+    padding: 0.5rem 0.5rem 0.8rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .legend {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.68rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--textdim);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .villager-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  .villager-card.tier-love { border-color: var(--love); }
+  .villager-card.tier-like { border-color: var(--like); }
+  .villager-card.tier-neutral { border-color: #3a3a5a; }
+
+  .vc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .vc-header .v-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+
+  .vc-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex: 1;
+  }
+
+  .vc-tier-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-love { background: #ff6b9d33; color: var(--love); border: 1px solid var(--love); }
+  .badge-like { background: #ffd16633; color: var(--like); border: 1px solid var(--like); }
+  .badge-neutral { background: #6c757d22; color: #8899aa; border: 1px solid #444; }
+  .badge-none { background: #33334422; color: #555577; border: 1px solid #33334a; }
+
+  .vc-gifts {
+    padding: 0.3rem 0.7rem 0.55rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .gift-pill {
+    font-size: 0.72rem;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+
+  .pill-love { background: #ff6b9d22; color: var(--love); border: 1px solid #ff6b9d55; }
+  .pill-like { background: #ffd16622; color: #f5c842; border: 1px solid #ffd16655; }
+
+  .no-results {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 2rem;
+    font-style: italic;
+  }
+
+  .select-all-wrap {
+    padding: 0.3rem 0.6rem;
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .mini-btn {
+    font-size: 0.65rem;
+    background: #0a0a1f;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--textdim);
+    cursor: pointer;
+    padding: 2px 7px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: all 0.1s;
+  }
+  .mini-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .count-badge {
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-left: auto;
+    font-style: italic;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2a3a5e; border-radius: 3px; }
+
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; height: auto; }
+    .panel { max-height: 40vh; border-right: none; border-bottom: 2px solid var(--border); }
+    .panel:last-child { border-left: none; border-top: 2px solid var(--border); }
+    .stars { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="stars stars-left">⭐🌟</div>
+  <h1>Stardew Valley<br>Gift Planner</h1>
+  <p>Toggle items you have · Toggle villagers you care about · See the best gifts</p>
+  <div class="stars stars-right">🌟⭐</div>
+</header>
+
+<div class="layout">
+  <!-- LEFT: Items -->
+  <div class="panel" id="items-panel">
+    <div class="panel-header">
+      🎁 Your Items
+      <div class="panel-hint">Click to remove from inventory</div>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="item-search" placeholder="Search items…">
+    </div>
+    <div class="select-all-wrap">
+      <button class="mini-btn" onclick="setAllItems(true)">All in</button>
+      <button class="mini-btn" onclick="setAllItems(false)">All out</button>
+    </div>
+    <div class="item-list" id="item-list"></div>
+  </div>
+
+  <!-- CENTER: Results -->
+  <div class="center-panel" id="center-panel">
+    <div class="center-header">
+      <span>Best Matches</span>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--love)"></div> Love</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--like)"></div> Like</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--neutral)"></div> Neutral only</div>
+      </div>
+    </div>
+    <div id="results"></div>
+  </div>
+
+  <!-- RIGHT: Villagers -->
+  <div class="panel" id="villagers-panel">
+    <div class="panel-header">
+      👤 Villagers
+      <div class="panel-hint">Click to hide/show</div>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="villager-search" placeholder="Search villagers…">
+    </div>
+    <div class="select-all-wrap">
+      <button class="mini-btn" onclick="setAllVillagers(true)">Show all</button>
+      <button class="mini-btn" onclick="setAllVillagers(false)">Hide all</button>
+    </div>
+    <div class="villager-list" id="villager-list"></div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+// Universal preferences (items everyone loves/likes by default)
+const UNIVERSAL_LOVES = [
+  "Prismatic Shard", "Pearl", "Rabbit's Foot", "Golden Pumpkin", "Magic Rock Candy"
+];
+
+const UNIVERSAL_LIKES = [
+  // Artisan goods
+  "Wine","Jelly","Juice","Pickles","Mead","Pale Ale","Beer","Truffle Oil",
+  // Cooking (all cooked dishes liked unless overridden — but these are the main ones)
+  // Gold/Iridium quality items are liked universally too, but we'll track actual items
+  // Flowers
+  "Daffodil","Leek","Dandelion","Tulip","Blue Jazz","Summer Spangle","Red Mushroom",
+  "Sunflower","Fairy Rose",
+  // Gold+ crops
+  "Parsnip","Potato","Cauliflower","Pumpkin","Melon","Strawberry","Blueberry","Starfruit",
+  "Tomato","Corn","Pepper","Eggplant","Yam","Amaranth","Red Cabbage","Artichoke","Beet","Cranberries","Ancient Fruit","Sweet Gem Berry",
+  // Gems
+  "Quartz","Earth Crystal","Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade","Spinel",
+  // Fish
+  "Sardine","Carp","Catfish","Shad","Pike","Woodskip","Sunfish","Bream","Eel","Octopus","Pufferfish","Ghostfish","Smallmouth Bass","Largemouth Bass","Tiger Trout","Sturgeon","Lingcod","Halibut","Red Snapper","Tuna","Super Cucumber","Midnight Carp","Walleye","Albacore","Herring","Squid","Spookfish","Angler","Legend","Mutant Carp","Crimsonfish","Glacierfish","Ice Pip","Lava Eel","Void Salmon",
+  // Cooked food
+  "Fried Egg","Omelet","Salad","Cheese Cauliflower","Baked Fish","Parsnip Soup","Vegetable Medley","Complete Breakfast","Fried Calamari","Strange Bun","Lucky Lunch","Fried Mushroom","Pizza","Bean Hotpot","Glazed Yams","Carp Surprise","Hashbrowns","Pancakes","Salmon Dinner","Fish Taco","Crispy Bass","Pepper Poppers","Bread","Tom Kha Soup","Trout Soup","Chocolate Cake","Pink Cake","Artichoke Dip","Stir Fry","Roasted Hazelnuts","Pumpkin Pie","Radish Salad","Fruit Salad","Blackberry Cobbler","Cranberry Candy","Maple Bar","Lobster Bisque","Dish O' The Sea","Miner's Treat","Roots Platter","Red Plate","Eggplant Parmesan","Rice Pudding","Ice Cream","Blueberry Tart","Autumn's Bounty","Pumpkin Soup","Super Meal","Cranberry Sauce","Stuffing","Farmer's Lunch","Survival Burger","Sashimi","Maki Roll","Tortilla",
+  // Artisan
+  "Cloth","Wool","Duck Feather","Rabbit's Foot","Caviar","Aged Roe","Honey","Truffle"
+];
+
+const UNIVERSAL_NEUTRALS = [
+  "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence","Stone","Coal",
+  "Iron Ore","Gold Ore","Wood","Hardwood","Fiber","Mixed Seeds"
+];
+
+const UNIVERSAL_DISLIKES = [
+  "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola"
+];
+
+const UNIVERSAL_HATES = [
+  "Holly" // most villagers hate this
+];
+
+// Villager-specific overrides and unique loves
+// Format: { loves:[], likes:[], neutral:[], dislikes:[], hates:[], 
+//           noUniversalLoves: bool, universalLoveExceptions:[], universalLikeExceptions:[] }
+const VILLAGERS = {
+  "Abigail": {
+    color: "#9b5de5",
+    loves: ["Amethyst","Chocolate Cake","Blackberry Cobbler","Pumpkin","Spicy Eel","Banana Pudding"],
+    likes: ["Quartz"],
+    universalLikeExceptions: ["Salad"],
+    dislikes: [],
+    hates: []
+  },
+  "Alex": {
+    color: "#5bc0eb",
+    loves: ["Complete Breakfast","Salmon Dinner"],
+    likes: [],
+    dislikes: ["Artichoke Dip","Kale"],
+    hates: ["Quartz"]
+  },
+  "Caroline": {
+    color: "#4caf50",
+    loves: ["Summer Spangle","Fish Taco","Green Tea"],
+    likes: ["Daffodil"],
+    dislikes: ["Maple Bar","Gold Bar","Iridium Bar"],
+    hates: []
+  },
+  "Clint": {
+    color: "#b87333",
+    loves: ["Amethyst","Aquamarine","Emerald","Topaz","Ruby","Jade","Gold Bar","Iridium Bar","Copper Bar","Artisan Goods","Fiddlehead Risotto","Omelet"],
+    likes: ["Gold Ore","Copper Ore","Iron Ore","Stone","Coal","Geode","Frozen Geode","Magma Geode","Omni Geode"],
+    dislikes: [],
+    hates: []
+  },
+  "Demetrius": {
+    color: "#8B4513",
+    loves: ["Strawberry","Ice Cream","Bean Hotpot","Rice Pudding"],
+    likes: ["Quartz","Cave Carrot"],
+    dislikes: [],
+    hates: []
+  },
+  "Dwarf": {
+    color: "#cc4444",
+    loves: ["Amethyst","Aquamarine","Emerald","Ruby","Topaz","Jade","Omni Geode","Dwarvish Helm","Dwarf Scroll I","Dwarf Scroll II","Dwarf Scroll III","Dwarf Scroll IV","Dwarf Gadget"],
+    likes: ["Copper Ore","Iron Ore","Gold Ore","Geode","Frozen Geode","Magma Geode"],
+    universalLikeExceptions: ["All Cooked Dishes"],
+    dislikes: [],
+    hates: []
+  },
+  "Elliott": {
+    color: "#c0392b",
+    loves: ["Crab Cakes","Duck Feather","Lobster","Pomegranate","Tom Kha Soup"],
+    likes: ["Octopus","Squid","Duck Egg","Shrimp"],
+    dislikes: ["Amaranth"],
+    hates: []
+  },
+  "Emily": {
+    color: "#e91e8c",
+    loves: ["Amethyst","Aquamarine","Cloth","Emerald","Jade","Ruby","Survival Burger","Topaz","Wool"],
+    likes: ["Daffodil","Leek"],
+    dislikes: [],
+    hates: []
+  },
+  "Evelyn": {
+    color: "#ff9eb5",
+    loves: ["Beet","Broken Glasses","Chocolate Cake","Diamond","Fairy Rose","Stuffing","Tulip"],
+    likes: ["Daffodil","Leek"],
+    universalLikeExceptions: ["Salad"],
+    dislikes: [],
+    hates: ["Holly"]
+  },
+  "George": {
+    color: "#607d8b",
+    loves: ["Fried Mushroom","Leek"],
+    likes: ["Daffodil"],
+    universalLikeExceptions: ["Salad","Salmonberry"],
+    dislikes: [],
+    hates: ["Holly"]
+  },
+  "Gus": {
+    color: "#f57f17",
+    loves: ["Diamond","Escargot","Fish Taco","Orange","Pepper Poppers","Tropical Curry"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Haley": {
+    color: "#ffeb3b",
+    loves: ["Coconut","Fruit Salad","Pink Cake","Sunflower"],
+    likes: ["Daffodil"],
+    universalLikeExceptions: ["All Fish","All Vegetables"],
+    dislikes: ["Quartz"],
+    hates: []
+  },
+  "Harvey": {
+    color: "#607d8b",
+    loves: ["Coffee","Pickles","Super Meal","Truffle Oil","Wine"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Jas": {
+    color: "#ce93d8",
+    loves: ["Ancient Doll","Fairy Rose","Pink Cake","Plum Pudding"],
+    likes: ["Coconut","Daffodil"],
+    universalLikeExceptions: ["All Artisan Goods"],
+    dislikes: [],
+    hates: []
+  },
+  "Jodi": {
+    color: "#ef9a9a",
+    loves: ["Chocolate Cake","Crispy Bass","Diamond","Eggplant Parmesan","Fried Eel","Pancakes","Rhubarb Pie","Vegetable Medley"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Kent": {
+    color: "#78909c",
+    loves: ["Fiddlehead Risotto","Roasted Hazelnuts"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Krobus": {
+    color: "#5c6bc0",
+    loves: ["Diamond","Iridium Bar","Pumpkin","Void Egg","Void Mayonnaise","Wild Horseradish"],
+    likes: ["Quartz","Cave Carrot"],
+    universalLikeExceptions: ["All Eggs","All Milk"],
+    dislikes: [],
+    hates: []
+  },
+  "Leah": {
+    color: "#8d6e63",
+    loves: ["Goat Cheese","Poppyseed Muffin","Salad","Stir Fry","Truffle","Vegetable Medley","Wine","Driftwood"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Leo": {
+    color: "#26a69a",
+    loves: ["Duck Mayonnaise","Mango","Ostrich Egg","Poi"],
+    likes: ["Daffodil"],
+    universalLikeExceptions: ["All Cooked Dishes except Poi"],
+    dislikes: [],
+    hates: []
+  },
+  "Lewis": {
+    color: "#f9a825",
+    loves: ["Autumn's Bounty","Glazed Yams","Hot Pepper","Vegetable Medley"],
+    likes: ["Blueberry","Daffodil"],
+    dislikes: [],
+    hates: []
+  },
+  "Linus": {
+    color: "#546e7a",
+    loves: ["Blueberry Tart","Cactus Fruit","Coconut","Dish O' The Sea","Yam"],
+    likes: ["Daffodil","Leek","Holly"],
+    universalLikeExceptions: [],
+    universalHateExceptions: ["Holly"],
+    dislikes: [],
+    hates: []
+  },
+  "Maggie": {
+    color: "#ff7043",
+    loves: [],
+    likes: [],
+    dislikes: [],
+    hates: []
+  },
+  "Marnie": {
+    color: "#f48fb1",
+    loves: ["Diamond","Farmer's Lunch","Pink Cake","Pumpkin Pie"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Maru": {
+    color: "#ef5350",
+    loves: ["Battery Pack","Cauliflower","Cheese Cauliflower","Diamond","Gold Bar","Iridium Bar","Miner's Treat","Pepper Poppers","Radioactive Bar"],
+    likes: ["Daffodil","Leek","Parsnip","Quartz","Earth Crystal","Copper Bar"],
+    dislikes: [],
+    hates: []
+  },
+  "Pam": {
+    color: "#ffa726",
+    loves: ["Beer","Cactus Fruit","Glazed Yams","Mead","Pale Ale","Parsnip Soup","Piña Colada"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Penny": {
+    color: "#ff8f00",
+    loves: ["Diamond","Emerald","Melon","Poppy","Poppyseed Muffin","Red Plate","Roots Platter","Sandfish","Tom Kha Soup"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: ["Joja Cola","Void Egg","Bok Choy"],
+    hates: ["Beer","Mead","Pale Ale","Wine","Crab Pot"]
+  },
+  "Pierre": {
+    color: "#66bb6a",
+    loves: ["Fried Calamari"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Robin": {
+    color: "#8d6e63",
+    loves: ["Goat Cheese","Peach","Spaghetti"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Sam": {
+    color: "#ffee58",
+    loves: ["Cactus Fruit","Maple Bar","Pizza","Tigerseye"],
+    likes: ["Daffodil","Joja Cola"],
+    universalLikeExceptions: ["Salad"],
+    dislikes: [],
+    hates: []
+  },
+  "Sandy": {
+    color: "#ff8a65",
+    loves: ["Crocus","Daffodil","Mango Sticky Rice","Sweet Pea"],
+    likes: ["Coconut","Sunflower"],
+    dislikes: [],
+    hates: []
+  },
+  "Sebastian": {
+    color: "#455a64",
+    loves: ["Frozen Tear","Obsidian","Pumpkin Soup","Sashimi","Void Egg"],
+    likes: ["Quartz"],
+    universalLikeExceptions: ["Salad"],
+    dislikes: [],
+    hates: []
+  },
+  "Shane": {
+    color: "#4caf50",
+    loves: ["Beer","Hot Pepper","Pepper Poppers","Pizza"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: ["Quartz"]
+  },
+  "Vincent": {
+    color: "#81d4fa",
+    loves: ["Cranberry Candy","Ginger Ale","Grape","Pink Cake","Snail"],
+    likes: ["Daffodil"],
+    universalLikeExceptions: ["All Cooked Dishes"],
+    dislikes: ["Salad"],
+    hates: []
+  },
+  "Willy": {
+    color: "#1565c0",
+    loves: ["Catfish","Diamond","Iridium Bar","Mead","Octopus","Pumpkin","Sea Cucumber","Sturgeon"],
+    likes: ["Daffodil","Leek","Parsnip"],
+    dislikes: [],
+    hates: []
+  },
+  "Wizard": {
+    color: "#7b1fa2",
+    loves: ["Purple Mushroom","Solar Essence","Super Cucumber","Void Essence"],
+    likes: ["Quartz"],
+    universalLikeExceptions: ["All Cooked Dishes"],
+    dislikes: [],
+    hates: []
+  }
+};
+
+// Item categories with emojis
+const ITEM_CATEGORIES = {
+  "💎 Gems & Minerals": [
+    "Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade","Spinel",
+    "Quartz","Earth Crystal","Frozen Tear","Fire Quartz","Prismatic Shard","Pearl",
+    "Tigerseye","Obsidian"
+  ],
+  "⛏️ Metals & Bars": [
+    "Copper Ore","Iron Ore","Gold Ore","Copper Bar","Iron Bar","Gold Bar","Iridium Bar",
+    "Radioactive Bar","Battery Pack","Coal","Stone"
+  ],
+  "🥕 Vegetables": [
+    "Parsnip","Potato","Cauliflower","Kale","Green Bean","Garlic","Coffee Bean",
+    "Melon","Tomato","Blueberry","Hot Pepper","Radish","Red Cabbage","Starfruit",
+    "Corn","Eggplant","Artichoke","Pumpkin","Bok Choy","Amaranth","Grape","Cranberries",
+    "Beet","Sweet Gem Berry","Ancient Fruit","Strawberry","Yam"
+  ],
+  "🌸 Flowers & Foraging": [
+    "Daffodil","Leek","Dandelion","Tulip","Blue Jazz","Summer Spangle","Sunflower",
+    "Fairy Rose","Poppy","Crocus","Sweet Pea","Wild Horseradish","Red Mushroom",
+    "Purple Mushroom","Chanterelle","Common Mushroom","Morel","Winter Root",
+    "Crystal Fruit","Snow Yam","Nautilus Shell","Coconut","Cactus Fruit","Cave Carrot",
+    "Holly","Fiddlehead Fern"
+  ],
+  "🌿 Artisan Goods": [
+    "Wine","Beer","Mead","Pale Ale","Juice","Pickles","Jelly","Honey","Truffle Oil",
+    "Cloth","Wool","Duck Feather","Rabbit's Foot","Cheese","Goat Cheese","Mayonnaise",
+    "Duck Mayonnaise","Void Mayonnaise","Truffle","Aged Roe","Caviar","Oil","Vinegar",
+    "Green Tea","Pale Ale","Coffee","Triple Shot Espresso"
+  ],
+  "🐔 Animal Products": [
+    "Egg","Large Egg","Void Egg","Duck Egg","Ostrich Egg","Dinosaur Egg",
+    "Milk","Large Milk","Goat Milk","Large Goat Milk"
+  ],
+  "🐟 Fish": [
+    "Sardine","Carp","Catfish","Shad","Pike","Woodskip","Sunfish","Bream","Eel",
+    "Octopus","Pufferfish","Ghostfish","Smallmouth Bass","Largemouth Bass","Tiger Trout",
+    "Sturgeon","Lingcod","Halibut","Red Snapper","Tuna","Super Cucumber","Midnight Carp",
+    "Walleye","Albacore","Herring","Squid","Angler","Legend","Mutant Carp","Crimsonfish",
+    "Glacierfish","Ice Pip","Lava Eel","Void Salmon","Lobster","Crab","Snail","Sandfish",
+    "Sea Cucumber","Spookfish","Shrimp","Tiger Trout","Woodskip","Dorado","Lionfish",
+    "Blue Discus","Puffer Fish","Trevally"
+  ],
+  "🍳 Cooked Dishes": [
+    "Fried Egg","Omelet","Salad","Cheese Cauliflower","Baked Fish","Parsnip Soup",
+    "Vegetable Medley","Complete Breakfast","Fried Calamari","Strange Bun","Lucky Lunch",
+    "Fried Mushroom","Pizza","Bean Hotpot","Glazed Yams","Carp Surprise","Hashbrowns",
+    "Pancakes","Salmon Dinner","Fish Taco","Crispy Bass","Pepper Poppers","Bread",
+    "Tom Kha Soup","Trout Soup","Chocolate Cake","Pink Cake","Artichoke Dip","Stir Fry",
+    "Roasted Hazelnuts","Pumpkin Pie","Radish Salad","Fruit Salad","Blackberry Cobbler",
+    "Cranberry Candy","Maple Bar","Lobster Bisque","Dish O' The Sea","Miner's Treat",
+    "Roots Platter","Red Plate","Eggplant Parmesan","Rice Pudding","Ice Cream",
+    "Blueberry Tart","Autumn's Bounty","Pumpkin Soup","Super Meal","Cranberry Sauce",
+    "Stuffing","Farmer's Lunch","Survival Burger","Sashimi","Maki Roll","Tortilla",
+    "Escargot","Crab Cakes","Shrimp Cocktail","Banana Pudding","Tropical Curry",
+    "Ginger Ale","Poi","Mango Sticky Rice","Poppyseed Muffin","Fiddlehead Risotto",
+    "Spicy Eel","Fried Eel","Rhubarb Pie","Plum Pudding","Piña Colada","Spaghetti",
+    "Fried Calamari"
+  ],
+  "🗑️ Junk": [
+    "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola","Driftwood",
+    "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence"
+  ],
+  "✨ Special Items": [
+    "Prismatic Shard","Pearl","Rabbit's Foot","Golden Pumpkin","Magic Rock Candy",
+    "Geode","Frozen Geode","Magma Geode","Omni Geode","Dwarvish Helm",
+    "Dwarf Scroll I","Dwarf Scroll II","Dwarf Scroll III","Dwarf Scroll IV","Dwarf Gadget",
+    "Ancient Doll","Battery Pack","Solar Essence","Void Essence","Bat Wing","Slime",
+    "Driftwood","Joja Cola","Mango","Orange","Peach","Pomegranate",
+    "Grape","Banana","Apricot","Cherry"
+  ]
+};
+
+// State
+const state = {
+  removedItems: new Set(),
+  hiddenVillagers: new Set(),
+  itemSearch: "",
+  villagerSearch: ""
+};
+
+// Build a lookup: item -> preference for each villager
+function getPreference(villager, item, vData) {
+  const name = villager;
+  const v = vData;
+
+  // Check specific villager dislikes/hates first (highest priority negative)
+  if (v.hates && v.hates.includes(item)) return "hate";
+  if (v.dislikes && v.dislikes.includes(item)) return "dislike";
+
+  // Check specific villager loves/likes (highest priority positive)
+  if (v.loves && v.loves.includes(item)) return "love";
+  if (v.likes && v.likes.includes(item)) return "like";
+
+  // Universal hate exceptions
+  if (v.universalHateExceptions && v.universalHateExceptions.includes(item)) {
+    // skip universal hate, continue checking below
+  } else if (UNIVERSAL_HATES.includes(item)) return "hate";
+
+  // Universal loves (with exceptions)
+  const ulExcept = v.universalLoveExceptions || [];
+  if (!ulExcept.includes(item) && UNIVERSAL_LOVES.includes(item)) return "love";
+
+  // Universal dislikes
+  if (UNIVERSAL_DISLIKES.includes(item)) return "dislike";
+
+  // Universal likes (with exceptions)
+  const uliExcept = v.universalLikeExceptions || [];
+  if (!uliExcept.includes(item) && UNIVERSAL_LIKES.includes(item)) return "like";
+
+  return "neutral";
+}
+
+// Get best gifts for a villager from available items
+function getBestGifts(villagerName, vData) {
+  const loves = [], likes = [];
+  const available = getAllItems().filter(i => !state.removedItems.has(i));
+  for (const item of available) {
+    const pref = getPreference(villagerName, item, vData);
+    if (pref === "love") loves.push(item);
+    else if (pref === "like") likes.push(item);
+  }
+  return { loves, likes };
+}
+
+function getAllItems() {
+  const all = [];
+  const seen = new Set();
+  for (const items of Object.values(ITEM_CATEGORIES)) {
+    for (const item of items) {
+      if (!seen.has(item)) { seen.add(item); all.push(item); }
+    }
+  }
+  return all;
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+
+function renderItems() {
+  const list = document.getElementById("item-list");
+  const search = state.itemSearch.toLowerCase();
+  let html = "";
+
+  for (const [cat, items] of Object.entries(ITEM_CATEGORIES)) {
+    const filtered = search ? items.filter(i => i.toLowerCase().includes(search)) : items;
+    if (!filtered.length) continue;
+    html += `<div class="item-cat">${cat}</div>`;
+    for (const item of filtered) {
+      const removed = state.removedItems.has(item);
+      html += `<button class="item-btn ${removed ? "removed" : ""}" onclick="toggleItem('${item.replace(/'/g,"\\'")}')">
+        ${item}
+      </button>`;
+    }
+  }
+
+  if (!html) html = `<div class="no-results">No items match your search</div>`;
+  list.innerHTML = html;
+}
+
+function renderVillagers() {
+  const list = document.getElementById("villager-list");
+  const search = state.villagerSearch.toLowerCase();
+  const names = Object.keys(VILLAGERS).filter(n => !search || n.toLowerCase().includes(search));
+  let html = "";
+  for (const name of names) {
+    const v = VILLAGERS[name];
+    const hidden = state.hiddenVillagers.has(name);
+    const initials = name.slice(0,2).toUpperCase();
+    html += `<button class="villager-btn ${hidden ? "hidden" : ""}" onclick="toggleVillager('${name}')">
+      <div class="v-avatar" style="background:${v.color}22; color:${v.color}; border-color:${v.color}55;">${initials}</div>
+      ${name}
+    </button>`;
+  }
+  if (!html) html = `<div class="no-results">No villagers match</div>`;
+  list.innerHTML = html;
+}
+
+function renderResults() {
+  const results = document.getElementById("results");
+  const visible = Object.keys(VILLAGERS).filter(n => !state.hiddenVillagers.has(n));
+
+  // Score each villager
+  const scored = visible.map(name => {
+    const { loves, likes } = getBestGifts(name, VILLAGERS[name]);
+    let tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : "neutral";
+    return { name, loves, likes, tier };
+  });
+
+  // Sort: love first, then like, then neutral; within tier alphabetical
+  const tierOrder = { love: 0, like: 1, neutral: 2 };
+  scored.sort((a, b) => {
+    const td = tierOrder[a.tier] - tierOrder[b.tier];
+    if (td !== 0) return td;
+    return a.name.localeCompare(b.name);
+  });
+
+  if (!scored.length) {
+    results.innerHTML = `<div class="no-results">No visible villagers. Show some in the right panel!</div>`;
+    return;
+  }
+
+  let html = "";
+  for (const { name, loves, likes, tier } of scored) {
+    const v = VILLAGERS[name];
+    const initials = name.slice(0,2).toUpperCase();
+    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : "— neutral";
+    const badgeClass = `badge-${tier}`;
+
+    let gifts = "";
+    for (const item of loves) {
+      gifts += `<span class="gift-pill pill-love">♥ ${item}</span>`;
+    }
+    for (const item of likes) {
+      gifts += `<span class="gift-pill pill-like">★ ${item}</span>`;
+    }
+    if (!gifts) {
+      gifts = `<span style="font-size:0.72rem; color:var(--muted); font-style:italic;">No liked items available</span>`;
+    }
+
+    html += `<div class="villager-card tier-${tier}">
+      <div class="vc-header">
+        <div class="v-avatar" style="background:${v.color}22; color:${v.color}; border-color:${v.color}77;">${initials}</div>
+        <div class="vc-name">${name}</div>
+        <div class="vc-tier-badge ${badgeClass}">${tierLabel}</div>
+      </div>
+      <div class="vc-gifts">${gifts}</div>
+    </div>`;
+  }
+
+  results.innerHTML = html;
+}
+
+function render() {
+  renderItems();
+  renderVillagers();
+  renderResults();
+}
+
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
+
+function toggleItem(item) {
+  if (state.removedItems.has(item)) state.removedItems.delete(item);
+  else state.removedItems.add(item);
+  render();
+}
+
+function toggleVillager(name) {
+  if (state.hiddenVillagers.has(name)) state.hiddenVillagers.delete(name);
+  else state.hiddenVillagers.add(name);
+  render();
+}
+
+function setAllItems(include) {
+  if (include) state.removedItems.clear();
+  else getAllItems().forEach(i => state.removedItems.add(i));
+  render();
+}
+
+function setAllVillagers(show) {
+  if (show) state.hiddenVillagers.clear();
+  else Object.keys(VILLAGERS).forEach(n => state.hiddenVillagers.add(n));
+  render();
+}
+
+document.getElementById("item-search").addEventListener("input", e => {
+  state.itemSearch = e.target.value;
+  renderItems();
+});
+
+document.getElementById("villager-search").addEventListener("input", e => {
+  state.villagerSearch = e.target.value;
+  renderVillagers();
+});
+
+// Initial render
+render();
+</script>
+</body>
+</html>
