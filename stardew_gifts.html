@@ -338,6 +338,7 @@
 
   .pill-love { background: #ff6b9d22; color: var(--love); border: 1px solid #ff6b9d55; }
   .pill-like { background: #ffd16622; color: #f5c842; border: 1px solid #ffd16655; }
+  .pill-neutral { background: #ffffff08; color: var(--muted); border: 1px solid #ffffff15; }
 
   .no-results {
     text-align: center;
@@ -473,13 +474,16 @@ const UNIVERSAL_LIKES = [
   "Cloth","Wool","Duck Feather","Rabbit's Foot","Caviar","Aged Roe","Honey","Truffle"
 ];
 
-const UNIVERSAL_NEUTRALS = [
-  "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence","Stone","Coal",
-  "Iron Ore","Gold Ore","Wood","Hardwood","Fiber","Mixed Seeds"
-];
+const UNIVERSAL_NEUTRALS = [];  // nothing is truly neutral-by-rule; items not in any list fall through to neutral naturally
 
 const UNIVERSAL_DISLIKES = [
-  "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola"
+  // Trash items
+  "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola",
+  // Resources
+  "Wood","Hardwood","Fiber","Mixed Seeds","Slime","Bat Wing",
+  "Stone","Coal","Iron Ore","Gold Ore",
+  // Geodes (Clint overrides these in his specific likes)
+  "Geode","Frozen Geode","Magma Geode","Omni Geode"
 ];
 
 const UNIVERSAL_HATES = [
@@ -810,9 +814,10 @@ const ITEM_CATEGORIES = {
     "Spicy Eel","Fried Eel","Rhubarb Pie","Plum Pudding","Piña Colada","Spaghetti",
     "Fried Calamari"
   ],
-  "🗑️ Junk": [
+  "🗑️ Junk & Misc": [
     "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola","Driftwood",
-    "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence"
+    "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence",
+    "Wood","Hardwood","Fiber","Stone","Coal"
   ],
   "✨ Special Items": [
     "Prismatic Shard","Pearl","Rabbit's Foot","Golden Pumpkin","Magic Rock Candy",
@@ -880,14 +885,15 @@ function getPreference(villager, item, vData) {
 
 // Get best gifts for a villager from available items
 function getBestGifts(villagerName, vData) {
-  const loves = [], likes = [];
+  const loves = [], likes = [], neutrals = [];
   const available = getAllItems().filter(i => !state.removedItems.has(i));
   for (const item of available) {
     const pref = getPreference(villagerName, item, vData);
     if (pref === "love") loves.push(item);
     else if (pref === "like") likes.push(item);
+    else if (pref === "neutral") neutrals.push(item);
   }
-  return { loves, likes };
+  return { loves, likes, neutrals };
 }
 
 function getAllItems() {
@@ -948,9 +954,9 @@ function renderResults() {
 
   // Score each villager
   const scored = visible.map(name => {
-    const { loves, likes } = getBestGifts(name, VILLAGERS[name]);
+    const { loves, likes, neutrals } = getBestGifts(name, VILLAGERS[name]);
     let tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : "neutral";
-    return { name, loves, likes, tier };
+    return { name, loves, likes, neutrals, tier };
   });
 
   // Sort: love first, then like, then neutral; within tier alphabetical
@@ -967,10 +973,10 @@ function renderResults() {
   }
 
   let html = "";
-  for (const { name, loves, likes, tier } of scored) {
+  for (const { name, loves, likes, neutrals, tier } of scored) {
     const v = VILLAGERS[name];
     const initials = name.slice(0,2).toUpperCase();
-    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : "— neutral";
+    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : "· NEUTRAL";
     const badgeClass = `badge-${tier}`;
 
     let gifts = "";
@@ -980,8 +986,11 @@ function renderResults() {
     for (const item of likes) {
       gifts += `<span class="gift-pill pill-like">★ ${item}</span>`;
     }
+    if (neutrals.length > 0) {
+      gifts += `<span class="gift-pill pill-neutral">· ${neutrals.join("</span><span class=\"gift-pill pill-neutral\">· ")}</span>`;
+    }
     if (!gifts) {
-      gifts = `<span style="font-size:0.72rem; color:var(--muted); font-style:italic;">No liked items available</span>`;
+      gifts = `<span style="font-size:0.72rem; color:var(--muted); font-style:italic;">No available items</span>`;
     }
 
     html += `<div class="villager-card tier-${tier}">
