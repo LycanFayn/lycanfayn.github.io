@@ -451,45 +451,95 @@
 
 // Universal preferences (items everyone loves/likes by default)
 const UNIVERSAL_LOVES = [
-  "Prismatic Shard", "Pearl", "Rabbit's Foot", "Golden Pumpkin", "Magic Rock Candy"
+  "Prismatic Shard", "Pearl", "Rabbit's Foot", "Golden Pumpkin", "Magic Rock Candy", "Stardrop Tea"
 ];
 
 const UNIVERSAL_LIKES = [
   // Artisan goods
-  "Wine","Jelly","Juice","Pickles","Mead","Pale Ale","Beer","Truffle Oil",
-  // Cooking (all cooked dishes liked unless overridden — but these are the main ones)
-  // Gold/Iridium quality items are liked universally too, but we'll track actual items
+  "Honey", "Wine","Pale Ale","Beer","Mead","Cheese","Goat Cheese","Coffee","Green Tea","Juice","Cloth","Mayonnaise","Duck Mayonnaise","Dinosaur Mayonnaise",
+  "Truffle Oil",  "Jelly","Pickles", "Caviar","Aged Roe", "Dried Mushrooms", "Dried Fruit", "Raisins", "Smoked Fish",
   // Flowers
-  "Daffodil","Leek","Dandelion","Tulip","Blue Jazz","Summer Spangle","Red Mushroom",
-  "Sunflower","Fairy Rose",
-  // Gold+ crops
-  "Parsnip","Potato","Cauliflower","Pumpkin","Melon","Strawberry","Blueberry","Starfruit",
-  "Tomato","Corn","Pepper","Eggplant","Yam","Amaranth","Red Cabbage","Artichoke","Beet","Cranberries","Ancient Fruit","Sweet Gem Berry",
+  "Sweet Pea","Crocus","Tulip","Blue Jazz","Summer Spangle",  "Sunflower","Fairy Rose",
+  // Fruit Tree#
+  "Cherry","Apricot","Banana","Mango","Orange","Peach","Apple","Pomegranate",
   // Gems
-  "Quartz","Earth Crystal","Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade","Spinel",
-  // Fish
-  "Sardine","Carp","Catfish","Shad","Pike","Woodskip","Sunfish","Bream","Eel","Octopus","Pufferfish","Ghostfish","Smallmouth Bass","Largemouth Bass","Tiger Trout","Sturgeon","Lingcod","Halibut","Red Snapper","Tuna","Super Cucumber","Midnight Carp","Walleye","Albacore","Herring","Squid","Spookfish","Angler","Legend","Mutant Carp","Crimsonfish","Glacierfish","Ice Pip","Lava Eel","Void Salmon",
-  // Cooked food
-  "Fried Egg","Omelet","Salad","Cheese Cauliflower","Baked Fish","Parsnip Soup","Vegetable Medley","Complete Breakfast","Fried Calamari","Strange Bun","Lucky Lunch","Fried Mushroom","Pizza","Bean Hotpot","Glazed Yams","Carp Surprise","Hashbrowns","Pancakes","Salmon Dinner","Fish Taco","Crispy Bass","Pepper Poppers","Bread","Tom Kha Soup","Trout Soup","Chocolate Cake","Pink Cake","Artichoke Dip","Stir Fry","Roasted Hazelnuts","Pumpkin Pie","Radish Salad","Fruit Salad","Blackberry Cobbler","Cranberry Candy","Maple Bar","Lobster Bisque","Dish O' The Sea","Miner's Treat","Roots Platter","Red Plate","Eggplant Parmesan","Rice Pudding","Ice Cream","Blueberry Tart","Autumn's Bounty","Pumpkin Soup","Super Meal","Cranberry Sauce","Stuffing","Farmer's Lunch","Survival Burger","Sashimi","Maki Roll","Tortilla",
-  // Artisan
-  "Cloth","Wool","Duck Feather","Rabbit's Foot","Caviar","Aged Roe","Honey","Truffle"
+  "Earth Crystal","Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade",
+    // Cooked food
+   "Omelet", "Salad", "Cheese Cauliflower", "Baked Fish", "Parsnip Soup", "Vegetable Medley", "Complete Breakfast", "Fried Calamari", "Strange Bun", "Lucky Lunch", 
+"Fried Mushroom", "Pizza", "Bean Hotpot", "Glazed Yams", "Carp Surprise", "Hashbrowns", "Pancakes", "Salmon Dinner", "Fish Taco", "Crispy Bass", "Pepper Poppers", 
+"Tom Kha Soup", "Trout Soup", "Chocolate Cake", "Pink Cake", "Rhubarb Pie", "Cookie", "Spaghetti", "Fried Eel", "Spicy Eel", "Sashimi", "Maki Roll", "Tortilla", "Red Plate", 
+"Eggplant Parmesan", "Rice Pudding", "Ice Cream", "Blueberry Tart", "Autumn's Bounty", "Pumpkin Soup", "Super Meal", "Cranberry Sauce", "Stuffing", "Farmer's Lunch", "Survival Burger", 
+"Dish O' The Sea", "Miner's Treat", "Roots Platter", "Triple Shot Espresso", "Seafoam Pudding", "Algae Soup", "Pale Broth", "Plum Pudding", "Artichoke Dip", "Stir Fry", 
+"Roasted Hazelnuts", "Pumpkin Pie", "Radish Salad", "Fruit Salad", "Blackberry Cobbler", "Cranberry Candy", "Bruschetta", "Coleslaw", "Fiddlehead Risotto", "Poppyseed Muffin", 
+"Chowder", "Fish Stew", "Escargot", "Lobster Bisque", "Maple Bar", "Crab Cakes", "Shrimp Cocktail", "Ginger Ale", "Banana Pudding", "Mango Sticky Rice", "Poi", "Tropical Curry", 
+"Squid Ink Ravioli", 
+// Vegetables
+"Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", 
+"Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", 
+  // Other
+  "Life Elixir","Maple Syrup", "Piña Colada","Rainbow Shell", "Treasure Chest"
 ];
 
-const UNIVERSAL_NEUTRALS = [];  // nothing is truly neutral-by-rule; items not in any list fall through to neutral naturally
+const UNIVERSAL_NEUTRALS = [
+  //Default/General
+  "Eggs", "Fruit", "Milk", "Mushrooms",
+  // Other
+"Fried Egg", "Bread", "Hops", "Tea Leaves", "Wheat", "Wool", "Coral", "Mystic Syrup", "Nautilus Shell", "Truffle", "Duck Feather", "Roe", "Squid Ink", "Sweet Gem Berry",
+  //Books
+  "Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", 
+"Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", 
+"Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", 
+];  // nothing is truly neutral-by-rule; items not in any list fall through to neutral naturally
 
 const UNIVERSAL_DISLIKES = [
-  // Trash items
-  "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola","Driftwood",
-  // Resources
-  "Wood","Hardwood","Fiber","Mixed Seeds","Slime","Bat Wing",
-  "Stone","Coal","Iron Ore","Gold Ore",
-  // Geodes (Clint overrides these in his specific likes)
-  "Geode","Frozen Geode","Magma Geode","Omni Geode"
+  "Battery Packs", "Clay", "Fiber", "Hardwood", "Moss", "Stone", "Wood", "Seeds (all)", "Saplings (all)",
+  //Bonuses
+  "Oil","Unmilled Rice","Price Catalogue", "Fireworks", "Bone Fragment", "Cinder Shard", "Coal", "Copper Bar", "Gold Bar", "Gold Ore", "Iridium Bar", "Iridium Ore", "Iron Bar", 
+  "Refined Quartz", "Cave Carrot", "Solar Essence", "Vinegar", "Driftwood", "Pine Tar", "Spring Onion", "Void Egg", "Field Snack", "Tea Set", "Void Essence", "Jack-O-Lantern",
+  "Qi Fruit", "Wheat Flour", "Oak Resin", "Rice",
+  // Artifacts
+  "Dwarf Scroll I", "Dwarf Scroll II", "Dwarf Scroll III", "Dwarf Scroll IV", "Chipped Amphora", "Arrowhead", "Ancient Doll", "Elvish Jewelry", "Chewing Stick", "Ornamental Fan", 
+"Dinosaur Egg", "Rare Disc", "Ancient Sword", "Rusty Spoon", "Rusty Spur", "Rusty Cog", "Chicken Statue", "Ancient Seed", "Prehistoric Tool", "Dried Starfish", "Anchor", 
+"Glass Shards", "Bone Flute", "Prehistoric Handaxe", "Dwarvish Helm", "Dwarf Gadget", "Ancient Drum", "Golden Mask", "Golden Relic", "Strange Doll", "Strange Doll", 
+"Prehistoric Scapula", "Prehistoric Tibia", "Prehistoric Skull", "Skeletal Hand", "Prehistoric Rib", "Prehistoric Vertebra", "Skeletal Tail", "Nautilus Fossil", "Amphibian Fossil", 
+"Palm Fossil", "Trilobite",
+// Bombs
+"Cherry Bomb", "Bomb", "Mega Bomb",
+// Crafted Paths
+"Wood Floor", "Rustic Plank Floor", "Straw Floor", "Weathered Floor", "Crystal Floor", "Stone Floor", "Stone Walkway Floor", "Brick Floor", "Wood Path", "Gravel Path", 
+"Cobblestone Path", "Stepping Stone Path", "Crystal Path", "Gate", "Wood Fence", "Stone Fence", "Iron Fence", "Hardwood Fence",
+// Fertilizer
+"Basic Fertilizer", "Quality Fertilizer", "Deluxe Fertilizer", "Basic Retaining Soil", "Quality Retaining Soil", "Deluxe Retaining Soil", "Speed-Gro", 
+"Deluxe Speed-Gro", "Hyper Speed-Gro", "Tree Fertilizer", 
+// Fish
+"Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", 
+"Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", 
+"Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", 
+"Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", 
+"Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", 
+"Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", 
+// Geode
+"Tigerseye", "Opal", "Fire Opal", "Alamite", "Bixite", "Baryte", "Aerinite", "Calcite", "Dolomite", "Esperite", "Fluorapatite", "Geminite", "Helvite", 
+"Jamborite", "Jagoite", "Kyanite", "Lunarite", "Malachite", "Neptunite", "Lemon Stone", "Nekoite", "Orpiment", "Petrified Slime", "Thunder Egg", 
+"Pyrite", "Ocean Stone", "Ghost Crystal", "Jasper", "Celestine", "Marble", "Sandstone", "Granite", "Basalt", "Limestone", "Soapstone", "Hematite", "Mudstone", 
+"Obsidian", "Slate", "Fairy Stone", "Star Shards", "Geode", "Frozen Geode", "Magma Geode", "Omni Geode", 
+// Bits
+"Sprinkler", "Quality Sprinkler", "Iridium Sprinkler", "Spinner", "Dressed Spinner", "Trap Bobber", "Cork Bobber", "Lead Bobber", "Treasure Hunter", "Barbed Hook", "Curiosity Lure", 
+"Quality Bobber", "Sonar Bobber", "Basilisk Paw", "Fairy Box", "Frog Egg", "Golden Spur", "Ice Rod", "Magic Hair Gel", "Magic Quiver", "Parrot Egg", 
 ];
 
 const UNIVERSAL_HATES = [
-  "Holly" // most villagers hate this
+  "Artifact Trove", "Blue Grass Starter", "Bug Steak", "Butterfly Powder", "Carp", "Cookout Kit", "Copper Ore", "Crab Pot", "Dragon Tooth", "Drum Block", "Energy Tonic", 
+"Error Item", "Explosive Ammo", "Fairy Dust", "Flute Block", "Golden Bobber", "Golden Coconut", "Golden Mystery Box", "Golden Tag", "Grass Starter", "Green Algae", 
+"Hay", "Iron Ore", "Journal Scrap", "Monster Musk", "Muscle Remedy", "Mystery Box", "Oil of Garlic", "Poppy", "Qi Seasoning", "Radioactive Bar", "Radioactive Ore", 
+"Rain Totem", "Red Mushroom", "Sap", "Sea Urchin", "Seafoam Pudding", "Seaweed", "Secret Note", "Slime Egg (any color)", "Snail", "Strange Bun", "Sugar", "Tent Kit", 
+"Torch", "Void Mayonnaise", "Warp Totem: Beach", "Warp Totem: Desert", "Warp Totem: Farm", "Warp Totem: Island", "Warp Totem: Mountains", "White Algae", "Bait", "Magnet", 
+"Wild Bait", "Magic Bait", "Deluxe Bait", "Challenge Bait", "Targeted Bait", "Fossilized Leg", "Fossilized Ribs", "Fossilized Skull", "Fossilized Spine", "Fossilized Tail", 
+"Mummified Frog", "Mummified Bat", "Snake Skull", "Snake Vertebrae", "Slime", "Bug Meat", "Bat Wing", "Solar Essence", "Void Essence", "Trash", "Soggy Newspaper", "Broken CD", 
+"Broken Glasses", "Joja Cola", "Rotten Plant", 
 ];
+
+UNIVERSAL_DENOTERS= [UNIVERSAL_LOVES,UNIVERSAL_LIKES,UNIVERSAL_NEUTRALS,UNIVERSAL_DISLIKES,UNIVERSAL_HATES]
 
 // Villager-specific overrides and unique loves
 // Format: { loves:[], likes:[], neutral:[], dislikes:[], hates:[], 
@@ -497,262 +547,294 @@ const UNIVERSAL_HATES = [
 const VILLAGERS = {
   "Abigail": {
     color: "#9b5de5",
-    loves: ["Amethyst","Chocolate Cake","Blackberry Cobbler","Pumpkin","Spicy Eel","Banana Pudding"],
-    likes: ["Quartz"],
-    universalLikeExceptions: ["Salad"],
-    dislikes: [],
-    hates: []
+    loves: ["Amethyst","Chocolate Cake","Blackberry Cobbler","Pumpkin","Spicy Eel","Banana Pudding","Monster Compendium", "Pufferfish"],
+    likes: ["Quartz","Ancient Sword", "Basilisk Paw", "Bone Flute", "Combat Quarterly"],
+    neutral: ["Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+    dislikes: ["Eggs", "Fruit", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", 
+"Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Sugar", "Wild Horseradish"],
+    hates: ["Clay", "Holly"]
   },
   "Alex": {
     color: "#5bc0eb",
-    loves: ["Complete Breakfast","Salmon Dinner"],
-    likes: [],
-    dislikes: ["Artichoke Dip","Kale"],
-    hates: ["Quartz"]
+    loves: ["Complete Breakfast", "Jack Be Nimble, Jack Be Thick", "Salmon Dinner"],
+likes: ["Eggs", "Dinosaur Egg", "Field Snack", "Parrot Egg"],
+neutral: ["Fruit", "Milk", "Mushrooms", "Daffodil", "Dandelion", "Frog Egg", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", "Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", "Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", "Salmonberry", "Wild Horseradish"],
+hates: ["Holly", "Quartz"]
   },
   "Caroline": {
     color: "#4caf50",
-    loves: ["Summer Spangle","Fish Taco","Green Tea"],
-    likes: ["Daffodil"],
-    dislikes: ["Maple Bar","Gold Bar","Iridium Bar"],
-    hates: []
+    loves: ["Fish Taco", "Green Tea", "Summer Spangle", "Tropical Curry"],
+likes: ["Daffodil", "Tea Leaves", "Wild Horseradish"],
+neutral: ["Eggs", "Fruit", "Milk"],
+dislikes: ["Mushrooms", "Amaranth", "Dandelion", "Duck Mayonnaise", "Ginger", "Hazelnut", "Holly", "Leek", "Mayonnaise", "Snow Yam", "Winter Root"],
+hates: ["Quartz", "Salmonberry"]
   },
   "Clint": {
     color: "#b87333",
-    loves: ["Amethyst","Aquamarine","Emerald","Topaz","Ruby","Jade","Gold Bar","Iridium Bar","Copper Bar","Artisan Goods","Fiddlehead Risotto","Omelet"],
-    likes: ["Gold Ore","Copper Ore","Iron Ore","Stone","Coal","Geode","Frozen Geode","Magma Geode","Omni Geode"],
-    dislikes: [],
-    hates: []
+    loves: ["Amethyst", "Aquamarine", "Artichoke Dip", "Emerald", "Fiddlehead Risotto", "Gold Bar", "Iridium Bar", "Jade", "Omni Geode", "Ruby", "Topaz"],
+likes: ["Copper Bar", "Iron Bar", "Mining Monthly"],
+neutral: ["Eggs", "Fruit", "Milk", "Mushrooms", "Coal", "Daffodil", "Dandelion", "Ginger", "Gold Ore", "Hazelnut", "Iridium Ore", "Leek", "Refined Quartz", "Snow Yam", "Winter Root"],
+dislikes: ["Sweet Pea","Crocus","Tulip","Blue Jazz","Summer Spangle",  "Sunflower","Fairy Rose", "Quartz", "Salmonberry", "Wild Horseradish"],
+hates: ["Holly"]
   },
   "Demetrius": {
     color: "#8B4513",
-    loves: ["Strawberry","Ice Cream","Bean Hotpot","Rice Pudding"],
-    likes: ["Quartz","Cave Carrot"],
-    dislikes: [],
-    hates: []
+    loves: ["Bean Hotpot", "Ice Cream", "Rice Pudding", "Strawberry"],
+likes: ["Eggs", "Fruit (except Strawberry)", "Dinosaur Egg", "Purple Mushroom"],
+neutral: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon",  "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish",  "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub",  "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler",  "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish",  "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Wild Horseradish", "Winter Root"],
+dislikes: ["Quartz"],
+hates: ["Holly"]
   },
   "Dwarf": {
     color: "#cc4444",
-    loves: ["Amethyst","Aquamarine","Emerald","Ruby","Topaz","Jade","Omni Geode","Dwarvish Helm","Dwarf Scroll I","Dwarf Scroll II","Dwarf Scroll III","Dwarf Scroll IV","Dwarf Gadget"],
-    likes: ["Copper Ore","Iron Ore","Gold Ore","Geode","Frozen Geode","Magma Geode"],
-    universalLikeExceptions: ["All Cooked Dishes"],
-    dislikes: [],
-    hates: []
+    loves: ["Amethyst", "Aquamarine", "Emerald", "Jade", "Lava Eel", "Lemon Stone", "Omni Geode", "Ruby", "Topaz"],
+likes: ["Dwarf Scroll I", "Dwarf Scroll II", "Dwarf Scroll III", "Dwarf Scroll IV", "Chipped Amphora", "Arrowhead", "Ancient Doll", "Elvish Jewelry", "Chewing Stick", "Ornamental Fan", "Dinosaur Egg", "Rare Disc", "Ancient Sword", "Rusty Spoon", "Rusty Spur", "Rusty Cog", "Chicken Statue", "Ancient Seed", "Prehistoric Tool", "Dried Starfish", "Anchor", "Glass Shards", "Bone Flute", "Prehistoric Handaxe", "Dwarvish Helm", "Dwarf Gadget", "Ancient Drum", "Golden Mask", "Golden Relic", "Strange Doll", "Strange Doll", "Prehistoric Scapula", "Prehistoric Tibia", "Prehistoric Skull", "Skeletal Hand", "Prehistoric Rib", "Prehistoric Vertebra", "Skeletal Tail", "Nautilus Fossil", "Amphibian Fossil", "Palm Fossil", "Trilobite", "Cave Carrot", "Quartz"],
+neutral: ["Fruit", "Milk", "Solar Essence", "Void Essence"],
+dislikes: ["Eggs", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Salmonberry", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: [""]
   },
   "Elliott": {
     color: "#c0392b",
-    loves: ["Crab Cakes","Duck Feather","Lobster","Pomegranate","Tom Kha Soup"],
-    likes: ["Octopus","Squid","Duck Egg","Shrimp"],
-    dislikes: ["Amaranth"],
-    hates: []
+    loves: ["Crab Cakes", "Duck Feather", "Lobster", "Pomegranate", "Squid Ink", "Tom Kha Soup"],
+likes: ["Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", "Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", "Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", "Fruit (except Pomegranate & Salmonberry)", "Octopus", "Squid"],
+neutral: ["Eggs", "Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel","Red Snapper",  "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam",  "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Rainbow Shell", "Sea Urchin"],
+dislikes: ["Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Pizza", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Amaranth", "Quartz", "Salmonberry", "Sea Cucumber", "Super Cucumber"]
   },
   "Emily": {
     color: "#e91e8c",
-    loves: ["Amethyst","Aquamarine","Cloth","Emerald","Jade","Ruby","Survival Burger","Topaz","Wool"],
-    likes: ["Daffodil","Leek"],
-    dislikes: [],
-    hates: []
+    loves: ["Amethyst", "Aquamarine", "Cloth", "Emerald", "Jade", "Parrot Egg", "Ruby", "Survival Burger", "Topaz", "Wool"],
+likes: ["Daffodil", "Quartz"],
+neutral: ["Eggs", "Fruit", "Milk", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Wild Horseradish", "Winter Root"],
+dislikes: ["Fried Eel", "Ice Cream", "Rice Pudding", "Salmonberry", "Spicy Eel"],
+hates: ["Fish Taco", "Holly", "Maki Roll", "Salmon Dinner", "Sashimi"]
   },
   "Evelyn": {
     color: "#ff9eb5",
-    loves: ["Beet","Broken Glasses","Chocolate Cake","Diamond","Fairy Rose","Stuffing","Tulip"],
-    likes: ["Daffodil","Leek"],
-    universalLikeExceptions: ["Salad"],
-    dislikes: [],
-    hates: ["Holly"]
+    loves: ["Beet", "Chocolate Cake", "Diamond", "Fairy Rose", "Raisins", "Stuffing", "Tulip"],
+likes: ["Milk", "Broken Glasses", "Clam", "Cockle", "Coral", "Daffodil", "Mussel", "Nautilus Shell", "Oyster", "Sea Urchin"],
+neutral: ["Eggs", "Fruit (except Fruit Tree Fruit, Salmonberry & Spice Berry)", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Quartz", "Wild Horseradish"],
+hates: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", 
+"Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp",  "Lobster", "Crayfish", "Crab", "Shrimp", "Periwinkle", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Clay", "Fried Eel", "Garlic", "Holly", "Maki Roll", "Salmonberry", "Sashimi", "Spice Berry", "Spicy Eel", "Trout Soup"]
   },
   "George": {
     color: "#607d8b",
-    loves: ["Fried Mushroom","Leek"],
-    likes: ["Daffodil"],
-    universalLikeExceptions: ["Salad","Salmonberry"],
-    dislikes: [],
-    hates: ["Holly"]
+    loves: ["Fried Mushroom", "Leek"],
+likes: ["Daffodil"],
+neutral: ["Eggs", "Fruit", "Milk", "Mushrooms", "Ginger", "Hazelnut", "Snow Yam", "Winter Root"],
+dislikes: ["Sweet Pea","Crocus","Tulip","Blue Jazz","Summer Spangle",  "Sunflower","Fairy Rose", "Salmonberry", "Wild Horseradish"],
+hates: ["Clay", "Dandelion", "Holly", "Quartz"]
   },
   "Gus": {
     color: "#f57f17",
-    loves: ["Diamond","Escargot","Fish Taco","Orange","Pepper Poppers","Tropical Curry"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Diamond", "Escargot", "Fish Taco", "Orange", "Tropical Curry"],
+likes: ["Daffodil", "Truffle"],
+neutral: ["Eggs", "Fruit", "Milk", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Salmonberry", "Wild Horseradish"],
+hates: ["Coleslaw", "Holly", "Quartz"]
   },
   "Haley": {
     color: "#ffeb3b",
-    loves: ["Coconut","Fruit Salad","Pink Cake","Sunflower"],
-    likes: ["Daffodil"],
-    universalLikeExceptions: ["All Fish","All Vegetables"],
-    dislikes: ["Quartz"],
-    hates: []
+    loves: ["Coconut", "Fruit Salad", "Pink Cake", "Sunflower"],
+likes: ["Daffodil"],
+neutral: [""],
+dislikes: ["Eggs", "Fruit (except Coconut)", "Milk", "Mushrooms", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", "Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Mystic Syrup", "Quartz", "Snow Yam", "Winter Root"],
+hates: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Clay", "Prismatic Shard", "Wild Horseradish"]
   },
   "Harvey": {
     color: "#607d8b",
-    loves: ["Coffee","Pickles","Super Meal","Truffle Oil","Wine"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Coffee", "Pickles", "Super Meal", "Truffle Oil", "Wine"],
+likes: ["Fruit", "Mushrooms", "Daffodil", "Dandelion", "Duck Egg", "Duck Feather", "Ginger", "Goat Milk", "Hazelnut", "Holly", "Large Goat Milk", "Leek", "Quartz", "Snow Yam", "Spring Onion", "Wild Horseradish", "Winter Root"],
+neutral: ["Eggs", "Large Milk", "Milk"],
+dislikes: ["Blueberry Tart", "Bread", "Cheese", "Chocolate Cake", "Cookie", "Cranberry Sauce", "Fried Mushroom", "Glazed Yams", "Goat Cheese", "Hashbrowns", "Ice Cream", "Pancakes", "Pink Cake", "Pizza", "Rhubarb Pie", "Rice Pudding"],
+hates: ["Coral", "Nautilus Shell", "Rainbow Shell", "Salmonberry", "Spice Berry"]
   },
   "Jas": {
     color: "#ce93d8",
-    loves: ["Ancient Doll","Fairy Rose","Pink Cake","Plum Pudding"],
-    likes: ["Coconut","Daffodil"],
-    universalLikeExceptions: ["All Artisan Goods"],
-    dislikes: [],
-    hates: []
+    loves: ["Ancient Doll", "Fairy Box", "Fairy Rose", "Pink Cake", "Plum Pudding", "Strange Doll (green)", "Strange Doll (yellow)"],
+likes: ["Milk", "Coconut", "Daffodil"],
+neutral: [""],
+dislikes: ["Eggs", "Fruit (except Coconut & Fruit Tree Fruit)", "Mushrooms", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", "Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Quartz", "Snow Yam", "Winter Root"],
+hates: ["Wine","Pale Ale","Beer","Mead","Cheese","Goat Cheese","Coffee","Green Tea","Juice","Cloth","Mayonnaise",
+"Duck Mayonnaise","Dinosaur Mayonnaise", "Truffle Oil",  "Pickles", "Caviar","Aged Roe", "Dried Mushrooms", "Dried Fruit", 
+"Raisins", "Smoked Fish", "Clay", "Piña Colada", "Triple Shot Espresso", "Wild Horseradish"]
   },
   "Jodi": {
     color: "#ef9a9a",
-    loves: ["Chocolate Cake","Crispy Bass","Diamond","Eggplant Parmesan","Fried Eel","Pancakes","Rhubarb Pie","Vegetable Medley"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Chocolate Cake", "Crispy Bass", "Diamond", "Eggplant Parmesan", "Fried Eel", "Pancakes", "Rhubarb Pie", "Vegetable Medley"],
+likes: ["Eggs", "Fruit", "Milk"],
+neutral: [""],
+dislikes: ["Mushrooms", "Garlic", "Ginger", "Hazelnut", "Holly", "Leek", "Quartz", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Daffodil", "Dandelion", "Spice Berry"]
   },
   "Kent": {
     color: "#78909c",
-    loves: ["Fiddlehead Risotto","Roasted Hazelnuts"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Fiddlehead Risotto", "Roasted Hazelnuts"],
+likes: ["Eggs", "Fruit", "Daffodil", "Dwarvish Safety Manual"],
+neutral: ["Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Leek", "Wild Horseradish", "Winter Root"],
+dislikes: ["Piña Colada", "Quartz", "Snow Yam"],
+hates: ["Milk", "Algae Soup", "Holly", "Sashimi", "Tortilla"]
   },
   "Krobus": {
     color: "#5c6bc0",
-    loves: ["Diamond","Iridium Bar","Pumpkin","Void Egg","Void Mayonnaise","Wild Horseradish"],
-    likes: ["Quartz","Cave Carrot"],
-    universalLikeExceptions: ["All Eggs","All Milk"],
-    dislikes: [],
-    hates: []
+    loves: ["Diamond", "Iridium Bar", "Monster Compendium", "Monster Musk", "Pumpkin", "Void Egg", "Void Mayonnaise", "Wild Horseradish"],
+likes: ["Gold Bar", "Quartz", "Seafoam Pudding", "Strange Bun"],
+neutral: ["Eggs", "Fruit", "Milk"],
+dislikes: ["Omelet", "Salad", "Cheese Cauliflower", "Baked Fish", "Parsnip Soup", "Vegetable Medley", "Complete Breakfast", 
+"Fried Calamari", "Lucky Lunch", "Fried Mushroom", "Pizza", "Bean Hotpot", "Glazed Yams", "Carp Surprise", "Hashbrowns", 
+"Pancakes", "Salmon Dinner", "Fish Taco", "Crispy Bass", "Pepper Poppers", "Tom Kha Soup", "Trout Soup", "Chocolate Cake", 
+"Pink Cake", "Rhubarb Pie", "Cookie", "Spaghetti", "Fried Eel", "Spicy Eel", "Sashimi", "Maki Roll", "Tortilla", "Red Plate", "Eggplant Parmesan", "Rice Pudding", "Ice Cream", "Blueberry Tart", "Autumn's Bounty", "Pumpkin Soup", "Super Meal", "Cranberry Sauce", "Stuffing", "Farmer's Lunch", "Survival Burger", "Dish O' The Sea", "Miner's Treat", "Roots Platter", "Triple Shot Espresso", "Algae Soup", "Pale Broth", "Plum Pudding", "Artichoke Dip", "Stir Fry", "Roasted Hazelnuts", "Pumpkin Pie", "Radish Salad", "Fruit Salad", "Blackberry Cobbler", "Cranberry Candy", "Bruschetta", "Coleslaw", "Fiddlehead Risotto", "Poppyseed Muffin", "Chowder", "Fish Stew", "Escargot", "Lobster Bisque", "Maple Bar", "Crab Cakes", "Shrimp Cocktail", "Ginger Ale", "Banana Pudding", "Mango Sticky Rice", "Poi", "Tropical Curry", "Squid Ink Ravioli", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Life Elixir", "Salmonberry", "Snow Yam", "Winter Root"],
+hates: [""]
   },
   "Leah": {
     color: "#8d6e63",
-    loves: ["Goat Cheese","Poppyseed Muffin","Salad","Stir Fry","Truffle","Vegetable Medley","Wine","Driftwood"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Goat Cheese", "Poppyseed Muffin", "Salad", "Stir Fry", "Truffle", "Vegetable Medley", "Wine"],
+likes: ["Eggs", "Fruit", "Milk", "Mushrooms", "Daffodil", "Dandelion", "Driftwood", "Ginger", "Hazelnut", "Holly", "Leek", "Snow Yam", "Spring Onion", "Wild Horseradish", "Winter Root"],
+neutral: [""],
+dislikes: ["Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade", "Carp Surprise", "Cookie", "Fried Egg", "Ice Cream", "Pink Cake", "Rice Pudding", "Seaweed", "Survival Burger", "Tortilla"],
+hates: ["Bread", "Hashbrowns", "Pancakes", "Pizza", "Void Egg"]
   },
   "Leo": {
     color: "#26a69a",
-    loves: ["Duck Mayonnaise","Mango","Ostrich Egg","Poi"],
-    likes: ["Daffodil"],
-    universalLikeExceptions: ["All Cooked Dishes except Poi"],
-    dislikes: [],
-    hates: []
+    loves: ["Duck Feather", "Mango", "Ostrich Egg", "Parrot Egg", "Poi"],
+likes: ["Dragon Tooth", "Nautilus Shell", "Quartz", "Sea Urchin", "Spice Berry"],
+neutral: ["Eggs", "Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon",  "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish",  "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub",  "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler",  "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish",  "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Fruit", "Milk", "Coffee"],
+dislikes: ["Omelet", "Salad", "Cheese Cauliflower", "Baked Fish", "Parsnip Soup", "Vegetable Medley", "Complete Breakfast", "Fried Calamari", 
+"Strange Bun", "Lucky Lunch", "Fried Mushroom", "Pizza", "Bean Hotpot", "Glazed Yams", "Carp Surprise", "Hashbrowns", "Pancakes", "Salmon Dinner",
+ "Fish Taco", "Crispy Bass", "Pepper Poppers", "Tom Kha Soup", "Trout Soup", "Chocolate Cake", "Pink Cake", "Rhubarb Pie", "Cookie", "Spaghetti", 
+ "Fried Eel", "Spicy Eel", "Sashimi", "Maki Roll", "Tortilla", "Red Plate", "Eggplant Parmesan", "Rice Pudding", "Ice Cream", "Blueberry Tart", 
+ "Autumn's Bounty", "Pumpkin Soup", "Super Meal", "Cranberry Sauce", "Stuffing", "Farmer's Lunch", "Survival Burger", "Dish O' The Sea", "Miner's Treat", 
+ "Roots Platter",  "Seafoam Pudding", "Algae Soup", "Pale Broth", "Plum Pudding", "Artichoke Dip", "Stir Fry", "Roasted Hazelnuts", "Pumpkin Pie", "Radish Salad", 
+ "Fruit Salad", "Blackberry Cobbler", "Cranberry Candy", "Bruschetta", "Coleslaw", "Fiddlehead Risotto", "Poppyseed Muffin", "Chowder", "Fish Stew", "Escargot", 
+ "Lobster Bisque", "Maple Bar", "Crab Cakes", "Shrimp Cocktail", "Ginger Ale", "Banana Pudding", "Tropical Curry", "Squid Ink Ravioli", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Life Elixir", "Pickles", "Salmonberry", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Beer", "Holly", "Hops", "Mead", "Morel", "Oil", "Pale Ale", "Piña Colada", "Triple Shot Espresso", "Unmilled Rice", "Wine"]
   },
   "Lewis": {
     color: "#f9a825",
-    loves: ["Autumn's Bounty","Glazed Yams","Hot Pepper","Vegetable Medley"],
-    likes: ["Blueberry","Daffodil"],
-    dislikes: [],
-    hates: []
+    loves: ["Autumn's Bounty", "Glazed Yams", "Green Tea", "Hot Pepper", "Vegetable Medley"],
+likes: ["Blueberry", "Cactus Fruit", "Coconut"],
+neutral: ["Eggs", "Fruit (except Blueberry, Cactus Fruit, Coconut, Fruit Tree Fruit, Hot Pepper, & Salmonberry)", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Milk", "Salmonberry", "Wild Horseradish"],
+hates: ["Holly", "Quartz"]
   },
   "Linus": {
     color: "#546e7a",
-    loves: ["Blueberry Tart","Cactus Fruit","Coconut","Dish O' The Sea","Yam"],
-    likes: ["Daffodil","Leek","Holly"],
-    universalLikeExceptions: [],
-    universalHateExceptions: ["Holly"],
-    dislikes: [],
-    hates: []
-  },
-  "Maggie": {
-    color: "#ff7043",
-    loves: [],
-    likes: [],
-    dislikes: [],
-    hates: []
+    loves: ["Blueberry Tart", "Cactus Fruit", "Coconut", "Dish O' The Sea", "The Alleyway Buffet", "Yam"],
+likes: ["Eggs", "Fruit", "Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Snow Yam", "Spring Onion", "Wild Horseradish", "Winter Root"],
+neutral: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly"],
+dislikes: ["Earth Crystal","Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade", "Treasure Chest"],
+hates: [""]
   },
   "Marnie": {
     color: "#f48fb1",
-    loves: ["Diamond","Farmer's Lunch","Pink Cake","Pumpkin Pie"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Diamond", "Farmer's Lunch", "Pink Cake", "Pumpkin Pie"],
+likes: ["Eggs", "Milk", "Stardew Valley Almanac", "Quartz"],
+neutral: ["Fruit", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Salmonberry", "Seaweed", "Wild Horseradish"],
+hates: ["Clay", "Holly"]
   },
   "Maru": {
     color: "#ef5350",
-    loves: ["Battery Pack","Cauliflower","Cheese Cauliflower","Diamond","Gold Bar","Iridium Bar","Miner's Treat","Pepper Poppers","Radioactive Bar"],
-    likes: ["Daffodil","Leek","Parsnip","Quartz","Earth Crystal","Copper Bar"],
-    dislikes: [],
-    hates: []
+    loves: ["Battery Pack", "Cauliflower", "Cheese Cauliflower", "Diamond", "Dwarf Gadget", "Gold Bar", "Iridium Bar", "Miner's Treat", "Pepper Poppers", "Radioactive Bar", "Rhubarb Pie", "Strawberry"],
+likes: ["Morel", "Purple Mushroom", "Chanterelle", "Copper Bar", "Iron Bar", "Oak Resin", "Pine Tar", "Quartz", "Radioactive Ore"],
+neutral: ["Eggs", "Fruit", "Milk", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Wild Horseradish", "Winter Root"],
+dislikes: ["Blackberry", "Common Mushroom", "Crystal Fruit", "Maple Syrup", "Salmonberry"],
+hates: ["Holly", "Honey", "Pickles", "Snow Yam", "Truffle"]
   },
   "Pam": {
     color: "#ffa726",
-    loves: ["Beer","Cactus Fruit","Glazed Yams","Mead","Pale Ale","Parsnip Soup","Piña Colada"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Beer", "Cactus Fruit", "Glazed Yams", "Mead", "Pale Ale", "Parsnip", "Parsnip Soup", "Piña Colada"],
+likes: ["Fruit (except Cactus Fruit)", "Milk", "Daffodil"],
+neutral: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", 
+"Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", 
+"Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", 
+"Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", 
+"Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", 
+"Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Joja Cola", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Eggs", "Quartz", "Wild Horseradish"],
+hates: ["Holly", "Octopus", "Squid"]
   },
   "Penny": {
     color: "#ff8f00",
-    loves: ["Diamond","Emerald","Melon","Poppy","Poppyseed Muffin","Red Plate","Roots Platter","Sandfish","Tom Kha Soup"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: ["Joja Cola","Void Egg","Bok Choy"],
-    hates: ["Beer","Mead","Pale Ale","Wine","Crab Pot"]
+    loves: ["Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", "Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", "Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", "Diamond", "Emerald", "Melon", "Poppy", "Poppyseed Muffin", "Red Plate", "Roots Platter", "Sandfish", "Tom Kha Soup"],
+likes: ["Dwarf Scroll I", "Dwarf Scroll II", "Dwarf Scroll III", "Dwarf Scroll IV", "Chipped Amphora", "Arrowhead", "Ancient Doll", "Elvish Jewelry", "Chewing Stick", "Ornamental Fan", "Dinosaur Egg", "Rare Disc", "Ancient Sword", "Rusty Spoon", "Rusty Spur", "Rusty Cog", "Chicken Statue", "Ancient Seed", "Prehistoric Tool", "Dried Starfish", "Anchor", "Glass Shards", "Bone Flute", "Prehistoric Handaxe", "Dwarvish Helm", "Dwarf Gadget", "Ancient Drum", "Golden Mask", "Golden Relic", "Strange Doll", "Strange Doll", "Prehistoric Scapula", "Prehistoric Tibia", "Prehistoric Skull", "Skeletal Hand", "Prehistoric Rib", "Prehistoric Vertebra", "Skeletal Tail", "Nautilus Fossil", "Amphibian Fossil", "Palm Fossil", "Trilobite", "Milk", "Dandelion", "Leek"],
+neutral: ["Eggs", "Fruit (except Fruit Tree Fruit, Grape, Melon & Salmonberry)", "Mushrooms", "Daffodil", "Ginger", "Hazelnut", "Snow Yam", "Wild Horseradish", "Winter Root"],
+dislikes: ["Algae Soup", "Duck Feather", "Pale Broth", "Purple Mushroom", "Quartz", "Red Mushroom", "Salmonberry", "Wool"],
+hates: ["Beer", "Grape", "Holly", "Hops", "Mead", "Pale Ale", "Piña Colada", "Rabbit's Foot", "Wine"]
   },
   "Pierre": {
     color: "#66bb6a",
-    loves: ["Fried Calamari"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Fried Calamari", "Price Catalogue"],
+likes: ["Eggs", "Milk", "Daffodil", "Dandelion"],
+neutral: ["Fruit"],
+dislikes: ["Earth Crystal","Frozen Tear","Fire Quartz","Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade", "Mushrooms", "Ginger", "Hazelnut", "Holly", "Leek", "Salmonberry", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Corn", "Garlic", "Parsnip Soup", "Tortilla"]
   },
   "Robin": {
     color: "#8d6e63",
-    loves: ["Goat Cheese","Peach","Spaghetti"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Goat Cheese", "Peach", "Spaghetti", "Woody's Secret"],
+likes: ["Fruit (except Peach)", "Milk", "Hardwood", "Quartz", "Woodcutter's Weekly"],
+neutral: ["Eggs", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
+dislikes: ["Wild Horseradish"],
+hates: ["Holly"]
   },
   "Sam": {
     color: "#ffee58",
-    loves: ["Cactus Fruit","Maple Bar","Pizza","Tigerseye"],
-    likes: ["Daffodil","Joja Cola"],
-    universalLikeExceptions: ["Salad"],
-    dislikes: [],
-    hates: []
+    loves: ["Cactus Fruit", "Maple Bar", "Pizza", "Tigerseye"],
+likes: ["Eggs", "Joja Cola"],
+neutral: ["Fruit (except Cactus Fruit, Fruit Tree Fruit & Salmonberry)", "Milk"],
+dislikes: ["Mushrooms", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", "Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Quartz", "Salmonberry", "Seaweed", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Bone Fragment", "Cinder Shard", "Coal", "Copper Bar", "Duck Mayonnaise", "Gold Bar", "Gold Ore", "Iridium Bar", "Iridium Ore", "Iron Bar", "Mayonnaise", "Pickles", "Refined Quartz"]
   },
   "Sandy": {
     color: "#ff8a65",
-    loves: ["Crocus","Daffodil","Mango Sticky Rice","Sweet Pea"],
-    likes: ["Coconut","Sunflower"],
-    dislikes: [],
-    hates: []
+    loves: ["Crocus", "Daffodil", "Mango Sticky Rice", "Sweet Pea"],
+likes: ["Fruit", "Goat Milk", "Large Goat Milk", "Quartz", "Wool"],
+neutral: ["Eggs", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Large Milk", "Leek", "Milk", "Snow Yam", "Wild Horseradish", "Winter Root"],
+dislikes: [""],
+hates: ["Holly"]
   },
   "Sebastian": {
     color: "#455a64",
-    loves: ["Frozen Tear","Obsidian","Pumpkin Soup","Sashimi","Void Egg"],
-    likes: ["Quartz"],
-    universalLikeExceptions: ["Salad"],
-    dislikes: [],
-    hates: []
+    loves: ["Frog Egg", "Frozen Tear", "Obsidian", "Pumpkin Soup", "Sashimi", "Void Egg"],
+likes: ["Combat Quarterly", "Flounder", "Monster Compendium", "Quartz"],
+neutral: ["Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Fruit", "Milk"],
+dislikes: ["Sweet Pea","Crocus","Tulip","Blue Jazz","Summer Spangle",  "Sunflower","Fairy Rose", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Salmonberry", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Honey", "Wine","Pale Ale","Beer","Mead","Cheese","Goat Cheese","Juice","Cloth","Mayonnaise","Duck Mayonnaise","Dinosaur Mayonnaise",  "Truffle Oil",  "Jelly","Pickles", "Caviar","Aged Roe", "Dried Mushrooms", "Dried Fruit", "Raisins", "Smoked Fish", "Eggs", "Clay", "Complete Breakfast", "Farmer's Lunch", "Omelet", "Piña Colada"]
   },
   "Shane": {
     color: "#4caf50",
-    loves: ["Beer","Hot Pepper","Pepper Poppers","Pizza"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: ["Quartz"]
+    loves: ["Beer", "Hot Pepper", "Pepper Poppers", "Pizza"],
+likes: ["Eggs", "Fruit (except Hot Pepper)"],
+neutral: ["Milk", "Strange Bun"],
+dislikes: ["Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Seaweed", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: ["Pickles", "Quartz"]
   },
   "Vincent": {
     color: "#81d4fa",
-    loves: ["Cranberry Candy","Ginger Ale","Grape","Pink Cake","Snail"],
-    likes: ["Daffodil"],
-    universalLikeExceptions: ["All Cooked Dishes"],
-    dislikes: ["Salad"],
-    hates: []
+    loves: ["Cranberry Candy", "Frog Egg", "Ginger Ale", "Grape", "Pink Cake", "Snail"],
+likes: ["Milk", "Coconut", "Daffodil"],
+neutral: [""],
+dislikes: ["Eggs", "Fruit (except Coconut, Grape & Fruit Tree Fruit)", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", "Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Mushrooms", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Quartz", "Snow Yam", "Winter Root"],
+hates: ["Wine","Pale Ale","Beer","Mead","Cheese","Goat Cheese","Coffee","Green Tea","Juice","Cloth","Mayonnaise","Duck Mayonnaise","Dinosaur Mayonnaise",  "Truffle Oil",  "Pickles", "Caviar","Aged Roe", "Dried Mushrooms", "Dried Fruit", "Raisins", "Smoked Fish", "Clay", "Piña Colada", "Triple Shot Espresso", "Wild Horseradish"]
   },
   "Willy": {
     color: "#1565c0",
-    loves: ["Catfish","Diamond","Iridium Bar","Mead","Octopus","Pumpkin","Sea Cucumber","Sturgeon"],
-    likes: ["Daffodil","Leek","Parsnip"],
-    dislikes: [],
-    hates: []
+    loves: ["Catfish", "Diamond", "Gold Bar", "Iridium Bar", "Jewels Of The Sea", "Mead", "Octopus", "Pumpkin", "Sea Cucumber", "Sturgeon", "The Art O' Crabbing"],
+likes: ["Bait And Bobber", "Lingcod", "Quartz", "Seafoam Pudding", "Tiger Trout"],
+neutral: ["Eggs", "Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Pike", "Sunfish", "Red Mullet", "Herring", "Eel",  "Red Snapper", "Squid",  "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp",  "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Fruit", "Milk", "Dish O' The Sea", "Maki Roll", "Sashimi"],
+dislikes: ["Omelet", "Salad", "Cheese Cauliflower", "Parsnip Soup", "Vegetable Medley", "Complete Breakfast", "Lucky Lunch", "Fried Mushroom", "Pizza", "Bean Hotpot", "Glazed Yams", "Hashbrowns", "Pancakes","Pepper Poppers",  "Tom Kha Soup", "Chocolate Cake", "Pink Cake", "Rhubarb Pie", "Cookie", "Spaghetti", "Spicy Eel",   "Tortilla", "Red Plate", "Eggplant Parmesan", "Rice Pudding", "Ice Cream", "Blueberry Tart", "Autumn's Bounty", "Pumpkin Soup", "Super Meal", "Cranberry Sauce", "Stuffing", "Farmer's Lunch", "Survival Burger", "Miner's Treat", "Roots Platter", "Triple Shot Espresso","Algae Soup", "Pale Broth", "Plum Pudding", "Artichoke Dip", "Stir Fry", "Roasted Hazelnuts", "Pumpkin Pie", "Radish Salad", "Fruit Salad", "Blackberry Cobbler", "Cranberry Candy", "Bruschetta", "Coleslaw", "Fiddlehead Risotto", "Poppyseed Muffin", "Maple Bar","Shrimp Cocktail", "Ginger Ale", "Banana Pudding", "Mango Sticky Rice", "Poi", "Tropical Curry", "Squid Ink Ravioli", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Life Elixir", "Salmonberry", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: [""]
   },
   "Wizard": {
     color: "#7b1fa2",
-    loves: ["Purple Mushroom","Solar Essence","Super Cucumber","Void Essence"],
-    likes: ["Quartz"],
-    universalLikeExceptions: ["All Cooked Dishes"],
-    dislikes: [],
-    hates: []
+    loves: ["Book of Mysteries", "Purple Mushroom", "Solar Essence", "Super Cucumber", "Void Essence"],
+likes: ["Tigerseye", "Opal", "Fire Opal", "Alamite", "Bixite", "Baryte", "Aerinite", "Calcite", "Dolomite", "Esperite", "Fluorapatite", "Geminite", "Helvite", "Jamborite", "Jagoite", "Kyanite", "Lunarite", "Malachite", "Neptunite", "Lemon Stone", "Nekoite", "Orpiment", "Petrified Slime", "Thunder Egg", "Pyrite", "Ocean Stone", "Ghost Crystal", "Jasper", "Celestine", "Marble", "Sandstone", "Granite", "Basalt", "Limestone", "Soapstone", "Hematite", "Mudstone", "Obsidian", "Slate", "Fairy Stone", "Star Shards", "Basilisk Paw", "Fairy Box", "Frog Egg", "Golden Spur", "Ice Rod", "Magic Hair Gel", "Magic Quiver", "Parrot Egg", "Iridium Bar", "Quartz"],
+neutral: ["Fruit"],
+dislikes: ["Eggs", "Milk", "Morel", "Chanterelle", "Common Mushroom", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Salmonberry", "Slime", "Snow Yam", "Wild Horseradish", "Winter Root"],
+hates: [""]
   }
 };
 
@@ -830,6 +912,15 @@ const ITEM_CATEGORIES = {
   ]
 };
 
+UNCATEGORISED = []
+  const seen = new Set();
+  for (const items of UNIVERSAL_DENOTERS) {
+    for (const item of items) {
+      if (!seen.has(item)) { seen.add(item); UNCATEGORISED.push(item); }
+    }
+  }
+ITEM_CATEGORIES["Uncategorised"] = UNCATEGORISED
+
 // ─── PERSISTENCE ─────────────────────────────────────────────────────────────
 function saveState() {
   localStorage.setItem("sdv_removedItems", JSON.stringify([...state.removedItems]));
@@ -865,23 +956,32 @@ function getPreference(villager, item, vData) {
   if (v.loves && v.loves.includes(item)) return "love";
   if (v.likes && v.likes.includes(item)) return "like";
 
-  // Universal hate exceptions
-  if (v.universalHateExceptions && v.universalHateExceptions.includes(item)) {
-    // skip universal hate, continue checking below
-  } else if (UNIVERSAL_HATES.includes(item)) return "hate";
+  // Check specific villager loves/likes (highest priority positive)
+  if (v.neutral && v.neutral.includes(item)) return "neutral";
 
-  // Universal loves (with exceptions)
-  const ulExcept = v.universalLoveExceptions || [];
-  if (!ulExcept.includes(item) && UNIVERSAL_LOVES.includes(item)) return "love";
-
-  // Universal dislikes
+  // removed exceptions check - just have universals return last
+  // // Universal hate exceptions
+  // if (v.universalHateExceptions && v.universalHateExceptions.includes(item)) {
+  //   // skip universal hate, continue checking below
+  // } else 
+  if (UNIVERSAL_HATES.includes(item)) return "hate";
+  if (UNIVERSAL_LOVES.includes(item)) return "love";
   if (UNIVERSAL_DISLIKES.includes(item)) return "dislike";
+  if (UNIVERSAL_LIKES.includes(item)) return "like";
+  if (UNIVERSAL_NEUTRALS.includes(item)) return "neutral";
+  
+  // // Universal loves (with exceptions)
+  // const ulExcept = v.universalLoveExceptions || [];
+  // if (!ulExcept.includes(item) && UNIVERSAL_LOVES.includes(item)) return "love";
 
-  // Universal likes (with exceptions)
-  const uliExcept = v.universalLikeExceptions || [];
-  if (!uliExcept.includes(item) && UNIVERSAL_LIKES.includes(item)) return "like";
+  // // Universal dislikes
+  // if (UNIVERSAL_DISLIKES.includes(item)) return "dislike";
 
-  return "neutral";
+  // // Universal likes (with exceptions)
+  // const uliExcept = v.universalLikeExceptions || [];
+  // if (!uliExcept.includes(item) && UNIVERSAL_LIKES.includes(item)) return "like";
+
+  return "error";
 }
 
 // Get best gifts for a villager from available items
