@@ -394,7 +394,6 @@
   <div class="stars stars-left">⭐🌟</div>
   <h1>Stardew Valley<br>Gift Planner</h1>
   <p>Toggle items you have · Toggle villagers you care about · See the best gifts</p>
-  <p>A utility tool designed via Claude Code</p>
   <div class="stars stars-right">🌟⭐</div>
 </header>
 
@@ -825,10 +824,24 @@ const ITEM_CATEGORIES = {
   ]
 };
 
-// State
+// ─── PERSISTENCE ─────────────────────────────────────────────────────────────
+function saveState() {
+  localStorage.setItem("sdv_removedItems", JSON.stringify([...state.removedItems]));
+  localStorage.setItem("sdv_hiddenVillagers", JSON.stringify([...state.hiddenVillagers]));
+}
+
+function loadState() {
+  try {
+    const items = JSON.parse(localStorage.getItem("sdv_removedItems") || "[]");
+    const villagers = JSON.parse(localStorage.getItem("sdv_hiddenVillagers") || "[]");
+    return { removedItems: new Set(items), hiddenVillagers: new Set(villagers) };
+  } catch { return { removedItems: new Set(), hiddenVillagers: new Set() }; }
+}
+
+const _saved = loadState();
 const state = {
-  removedItems: new Set(),
-  hiddenVillagers: new Set(),
+  removedItems: _saved.removedItems,
+  hiddenVillagers: _saved.hiddenVillagers,
   itemSearch: "",
   villagerSearch: ""
 };
@@ -995,25 +1008,25 @@ function render() {
 function toggleItem(item) {
   if (state.removedItems.has(item)) state.removedItems.delete(item);
   else state.removedItems.add(item);
-  render();
+  saveState(); render();
 }
 
 function toggleVillager(name) {
   if (state.hiddenVillagers.has(name)) state.hiddenVillagers.delete(name);
   else state.hiddenVillagers.add(name);
-  render();
+  saveState(); render();
 }
 
 function setAllItems(include) {
   if (include) state.removedItems.clear();
   else getAllItems().forEach(i => state.removedItems.add(i));
-  render();
+  saveState(); render();
 }
 
 function setAllVillagers(show) {
   if (show) state.hiddenVillagers.clear();
   else Object.keys(VILLAGERS).forEach(n => state.hiddenVillagers.add(n));
-  render();
+  saveState(); render();
 }
 
 document.getElementById("item-search").addEventListener("input", e => {
