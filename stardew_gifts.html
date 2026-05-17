@@ -1061,12 +1061,12 @@ function renderResults() {
   // Score each villager
   const scored = visible.map(name => {
     const { loves, likes, neutrals } = getBestGifts(name, VILLAGERS[name]);
-    let tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : "neutral";
+    let tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : neutrals.length > 0 ? "neutral" : "none";
     return { name, loves, likes, neutrals, tier };
   });
 
   // Sort: love first, then like, then neutral; within tier alphabetical
-  const tierOrder = { love: 0, like: 1, neutral: 2 };
+  const tierOrder = { love: 0, like: 1, neutral: 2, none: 3 };
   scored.sort((a, b) => {
     const td = tierOrder[a.tier] - tierOrder[b.tier];
     if (td !== 0) return td;
@@ -1082,7 +1082,7 @@ function renderResults() {
   for (const { name, loves, likes, neutrals, tier } of scored) {
     const v = VILLAGERS[name];
     const initials = name.slice(0,2).toUpperCase();
-    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : "· NEUTRAL";
+    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : tier ==="neutral" ? "· NEUTRAL" : "✗ NONE";
     const badgeClass = `badge-${tier}`;
 
     let gifts = "";
