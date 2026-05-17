@@ -914,6 +914,11 @@ const ITEM_CATEGORIES = {
 
 UNCATEGORISED = []
   const seen = new Set();
+  for (const items of Object.values(ITEM_CATEGORIES)) {
+    for (const item of items) {
+      if (!seen.has(item)) { seen.add(item); }
+    }
+  }
   for (const items of UNIVERSAL_DENOTERS) {
     for (const item of items) {
       if (!seen.has(item)) { seen.add(item); UNCATEGORISED.push(item); }
