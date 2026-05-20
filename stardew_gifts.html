@@ -377,6 +377,49 @@
     font-style: italic;
   }
 
+  /* Save slot bar */
+  .slot-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: #0a0a1f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--textdim);
+    cursor: pointer;
+    padding: 2px 9px;
+    transition: all 0.12s;
+    white-space: nowrap;
+  }
+  .slot-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .slot-btn.slot-active { background: #2a2a0a; border-color: var(--gold); color: var(--gold); }
+
+  /* Item and villager rows with priority button */
+  .item-row {
+    display: flex; align-items: center; gap: 3px; margin-bottom: 3px;
+  }
+  .item-row .item-btn {
+    flex: 1; margin-bottom: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 4px;
+  }
+  .item-name { flex: 1; }
+  .item-stats { font-size: 0.65rem; display: flex; gap: 3px; flex-shrink: 0; }
+
+  .villager-row {
+    display: flex; align-items: center; gap: 3px; margin-bottom: 3px;
+  }
+  .villager-row .villager-btn { flex: 1; margin-bottom: 0; }
+
+  .priority-btn {
+    flex-shrink: 0; width: 24px; height: 24px;
+    background: #0a0a1f; border: 1px solid var(--border); border-radius: 4px;
+    color: #3a3a5a; font-size: 0.75rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s; padding: 0; line-height: 1;
+  }
+  .priority-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .priority-btn.active { background: #2a2200; border-color: var(--gold); color: var(--gold); }
+
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: #2a3a5e; border-radius: 3px; }
@@ -395,7 +438,8 @@
   <div class="stars stars-left">⭐🌟</div>
   <h1>Stardew Valley<br>Gift Planner</h1>
   <p>Toggle items you have · Toggle villagers you care about · See the best gifts</p>
-  <p style="font-size:0.65rem; color:#556; margin-top:0.4rem; letter-spacing:0.5px;">Made with <a href="https://claude.ai" style="color:#8899aa; text-decoration:none;">Claude</a></p>
+  <div id="slot-bar" style="margin-top:0.5rem;"></div>
+  <p style="font-size:0.55rem; color:#445; margin-top:0.35rem; letter-spacing:0.3px;">Made with <a href="https://claude.ai" style="color:#667788; text-decoration:none;">Claude</a></p>
   <div class="stars stars-right">🌟⭐</div>
 </header>
 
@@ -539,7 +583,7 @@ const UNIVERSAL_HATES = [
 "Broken Glasses", "Joja Cola", "Rotten Plant", 
 ];
 
-UNIVERSAL_DENOTERS= [UNIVERSAL_LOVES,UNIVERSAL_LIKES,UNIVERSAL_NEUTRALS,UNIVERSAL_DISLIKES,UNIVERSAL_HATES]
+const UNIVERSAL_DENOTERS = [UNIVERSAL_LOVES,UNIVERSAL_LIKES,UNIVERSAL_NEUTRALS,UNIVERSAL_DISLIKES,UNIVERSAL_HATES];
 
 // Villager-specific overrides and unique loves
 // Format: { loves:[], likes:[], neutral:[], dislikes:[], hates:[], 
@@ -551,7 +595,7 @@ const VILLAGERS = {
     likes: ["Quartz","Ancient Sword", "Basilisk Paw", "Bone Flute", "Combat Quarterly"],
     neutral: ["Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Leek", "Snow Yam", "Winter Root"],
     dislikes: ["Eggs", "Fruit", "Amaranth", "Artichoke", "Beet", "Bok Choy", "Broccoli", "Carrot", "Cauliflower", "Corn", "Eggplant", "Fiddlehead Fern", "Garlic", "Green Bean",  "Kale", "Parsnip", 
-"Potato", "Pumpkin", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Sugar", "Wild Horseradish"],
+"Potato", "Radish", "Red Cabbage", "Summer Squash", "Taro Root",  "Tomato",   "Yam", "Sugar", "Wild Horseradish"],
     hates: ["Clay", "Holly"]
   },
   "Alex": {
@@ -597,7 +641,7 @@ hates: [""]
   "Elliott": {
     color: "#c0392b",
     loves: ["Crab Cakes", "Duck Feather", "Lobster", "Pomegranate", "Squid Ink", "Tom Kha Soup"],
-likes: ["Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", "Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", "Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", "Fruit (except Pomegranate & Salmonberry)", "Octopus", "Squid"],
+likes: ["Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", "Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", "Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", "Fruit (except Pomegranate & Salmonberry)"],
 neutral: ["Eggs", "Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", "Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel","Red Snapper",  "Super Cucumber", "Ghostfish", "Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", "Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", "Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam",  "Crayfish", "Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", "Rainbow Shell", "Sea Urchin"],
 dislikes: ["Milk", "Mushrooms", "Daffodil", "Dandelion", "Ginger", "Hazelnut", "Holly", "Leek", "Pizza", "Snow Yam", "Wild Horseradish", "Winter Root"],
 hates: ["Amaranth", "Quartz", "Salmonberry", "Sea Cucumber", "Super Cucumber"]
@@ -912,99 +956,136 @@ const ITEM_CATEGORIES = {
   ]
 };
 
-UNCATEGORISED = []
+(function() {
   const seen = new Set();
   for (const items of Object.values(ITEM_CATEGORIES)) {
-    for (const item of items) {
-      if (!seen.has(item)) { seen.add(item); }
-    }
+    for (const item of items) { seen.add(item); }
   }
+  const uncategorised = [];
   for (const items of UNIVERSAL_DENOTERS) {
     for (const item of items) {
-      if (!seen.has(item)) { seen.add(item); UNCATEGORISED.push(item); }
+      if (!seen.has(item)) { seen.add(item); uncategorised.push(item); }
     }
   }
-ITEM_CATEGORIES["Uncategorised"] = UNCATEGORISED
+  if (uncategorised.length) ITEM_CATEGORIES["Uncategorised"] = uncategorised;
+})();
 
-// ─── PERSISTENCE ─────────────────────────────────────────────────────────────
-function saveState() {
-  localStorage.setItem("sdv_removedItems", JSON.stringify([...state.removedItems]));
-  localStorage.setItem("sdv_hiddenVillagers", JSON.stringify([...state.hiddenVillagers]));
+// ─── PERSISTENCE & STATE ──────────────────────────────────────────────────────
+// Save slots: stored as array in localStorage. Each slot: { name, removedItems, hiddenVillagers, priorityItems, priorityVillagers }
+// Slot 0 is always the live "(none)" default — never persisted.
+
+function defaultSlots() {
+  return [{ name: "(none)", removedItems: [], hiddenVillagers: [], priorityItems: [], priorityVillagers: [] }];
 }
 
-function loadState() {
+function loadSlots() {
   try {
-    const items = JSON.parse(localStorage.getItem("sdv_removedItems") || "[]");
-    const villagers = JSON.parse(localStorage.getItem("sdv_hiddenVillagers") || "[]");
-    return { removedItems: new Set(items), hiddenVillagers: new Set(villagers) };
-  } catch { return { removedItems: new Set(), hiddenVillagers: new Set() }; }
+    const raw = localStorage.getItem("sdv_slots");
+    const slots = raw ? JSON.parse(raw) : defaultSlots();
+    // Ensure slot 0 always exists and is named "(none)"
+    if (!slots.length) return defaultSlots();
+    slots[0] = { ...slots[0], name: "(none)" };
+    return slots;
+  } catch { return defaultSlots(); }
 }
 
-const _saved = loadState();
+function saveSlots() {
+  // Don't persist slot 0's item/villager state — it's always the clean default
+  const toSave = slots.map((s, i) => i === 0
+    ? { name: "(none)", removedItems: [], hiddenVillagers: [], priorityItems: [], priorityVillagers: [] }
+    : s
+  );
+  localStorage.setItem("sdv_slots", JSON.stringify(toSave));
+}
+
+let slots = loadSlots();
+let currentSlotIdx = Math.min(parseInt(localStorage.getItem("sdv_currentSlot") || "0"), slots.length - 1);
+
 const state = {
-  removedItems: _saved.removedItems,
-  hiddenVillagers: _saved.hiddenVillagers,
+  removedItems: new Set(),
+  hiddenVillagers: new Set(),
+  priorityItems: new Set(),
+  priorityVillagers: new Set(),
   itemSearch: "",
   villagerSearch: ""
 };
 
-// Build a lookup: item -> preference for each villager
+function applySlot(idx) {
+  const s = slots[idx];
+  state.removedItems    = new Set(s.removedItems    || []);
+  state.hiddenVillagers = new Set(s.hiddenVillagers || []);
+  state.priorityItems   = new Set(s.priorityItems   || []);
+  state.priorityVillagers = new Set(s.priorityVillagers || []);
+}
+
+function syncCurrentSlotFromState() {
+  if (currentSlotIdx === 0) return; // never persist the default slot
+  slots[currentSlotIdx] = {
+    ...slots[currentSlotIdx],
+    removedItems:    [...state.removedItems],
+    hiddenVillagers: [...state.hiddenVillagers],
+    priorityItems:   [...state.priorityItems],
+    priorityVillagers: [...state.priorityVillagers],
+  };
+  saveSlots();
+}
+
+// Initialise state from saved slot
+applySlot(currentSlotIdx);
+
+// ─── PREFERENCE LOGIC ────────────────────────────────────────────────────────
+
 function getPreference(villager, item, vData) {
-  const name = villager;
   const v = vData;
-
-  // Check specific villager dislikes/hates first (highest priority negative)
-  if (v.hates && v.hates.includes(item)) return "hate";
+  if (v.hates   && v.hates.includes(item))   return "hate";
   if (v.dislikes && v.dislikes.includes(item)) return "dislike";
-
-  // Check specific villager loves/likes (highest priority positive)
-  if (v.loves && v.loves.includes(item)) return "love";
-  if (v.likes && v.likes.includes(item)) return "like";
-
-  // Check specific villager loves/likes (highest priority positive)
+  if (v.loves   && v.loves.includes(item))   return "love";
+  if (v.likes   && v.likes.includes(item))   return "like";
   if (v.neutral && v.neutral.includes(item)) return "neutral";
-
-  // removed exceptions check - just have universals return last
-  // // Universal hate exceptions
-  // if (v.universalHateExceptions && v.universalHateExceptions.includes(item)) {
-  //   // skip universal hate, continue checking below
-  // } else 
-  if (UNIVERSAL_HATES.includes(item)) return "hate";
-  if (UNIVERSAL_LOVES.includes(item)) return "love";
+  if (UNIVERSAL_HATES.includes(item))    return "hate";
+  if (UNIVERSAL_LOVES.includes(item))    return "love";
   if (UNIVERSAL_DISLIKES.includes(item)) return "dislike";
-  if (UNIVERSAL_LIKES.includes(item)) return "like";
+  if (UNIVERSAL_LIKES.includes(item))    return "like";
   if (UNIVERSAL_NEUTRALS.includes(item)) return "neutral";
-  
-  // // Universal loves (with exceptions)
-  // const ulExcept = v.universalLoveExceptions || [];
-  // if (!ulExcept.includes(item) && UNIVERSAL_LOVES.includes(item)) return "love";
-
-  // // Universal dislikes
-  // if (UNIVERSAL_DISLIKES.includes(item)) return "dislike";
-
-  // // Universal likes (with exceptions)
-  // const uliExcept = v.universalLikeExceptions || [];
-  // if (!uliExcept.includes(item) && UNIVERSAL_LIKES.includes(item)) return "like";
-
   return "error";
 }
 
-// Get best gifts for a villager from available items
+// ── Item stats: how many villagers love/like/neutral each item ──
+function buildItemStats() {
+  const stats = {};
+  const allItems = getAllItems();
+  for (const item of allItems) {
+    let love = 0, like = 0, neutral = 0;
+    for (const [name, v] of Object.entries(VILLAGERS)) {
+      const p = getPreference(name, item, v);
+      if (p === "love") love++;
+      else if (p === "like") like++;
+      else if (p === "neutral") neutral++;
+    }
+    stats[item] = { love, like, neutral };
+  }
+  return stats;
+}
+let ITEM_STATS = {};
+
 function getBestGifts(villagerName, vData) {
   const loves = [], likes = [], neutrals = [];
   const available = getAllItems().filter(i => !state.removedItems.has(i));
   for (const item of available) {
     const pref = getPreference(villagerName, item, vData);
-    if (pref === "love") loves.push(item);
-    else if (pref === "like") likes.push(item);
+    if (pref === "love")    loves.push(item);
+    else if (pref === "like")    likes.push(item);
     else if (pref === "neutral") neutrals.push(item);
   }
-  return { loves, likes, neutrals };
+  const sortItems = arr => [
+    ...arr.filter(i => state.priorityItems.has(i)).sort(),
+    ...arr.filter(i => !state.priorityItems.has(i)).sort()
+  ];
+  return { loves: sortItems(loves), likes: sortItems(likes), neutrals: sortItems(neutrals) };
 }
 
 function getAllItems() {
-  const all = [];
-  const seen = new Set();
+  const all = [], seen = new Set();
   for (const items of Object.values(ITEM_CATEGORIES)) {
     for (const item of items) {
       if (!seen.has(item)) { seen.add(item); all.push(item); }
@@ -1015,23 +1096,66 @@ function getAllItems() {
 
 // ─── RENDER ──────────────────────────────────────────────────────────────────
 
+function renderSlotBar() {
+  const bar = document.getElementById("slot-bar");
+  let html = `<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;">
+    <span style="font-size:0.55rem;color:var(--muted);font-family:'Press Start 2P',monospace;letter-spacing:1px;flex-shrink:0;">SAVE</span>`;
+
+  for (let i = 0; i < slots.length; i++) {
+    const active = i === currentSlotIdx;
+    const isDefault = i === 0;
+    html += `<button onclick="switchSlot(${i})" class="slot-btn ${active ? 'slot-active' : ''}">${escHtml(slots[i].name)}</button>`;
+  }
+
+  html += `<button onclick="addSlot()" class="slot-btn" title="New save slot" style="color:var(--gold);border-color:#3a3a2a;">＋</button>`;
+  html += `</div>`;
+
+  if (currentSlotIdx > 0) {
+    const s = slots[currentSlotIdx];
+    html += `<div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-top:4px;">
+      <input id="slot-name-input" type="text" value="${escHtml(s.name)}" maxlength="20"
+        onchange="renameSlot(this.value)"
+        style="background:#0a0a1f;border:1px solid var(--border);border-radius:4px;color:var(--text);
+               font-family:'Nunito',sans-serif;font-size:0.72rem;padding:2px 6px;width:120px;outline:none;"
+        placeholder="Slot name…">
+      <button onclick="deleteSlot()" class="slot-btn" style="color:#c0392b;border-color:#5a2a2a;" title="Delete this slot">✕</button>
+    </div>`;
+  }
+
+  bar.innerHTML = html;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
 function renderItems() {
   const list = document.getElementById("item-list");
   const search = state.itemSearch.toLowerCase();
   let html = "";
-
   for (const [cat, items] of Object.entries(ITEM_CATEGORIES)) {
     const filtered = search ? items.filter(i => i.toLowerCase().includes(search)) : items;
     if (!filtered.length) continue;
     html += `<div class="item-cat">${cat}</div>`;
     for (const item of filtered) {
       const removed = state.removedItems.has(item);
-      html += `<button class="item-btn ${removed ? "removed" : ""}" onclick="toggleItem('${item.replace(/'/g,"\\'")}')">
-        ${item}
-      </button>`;
+      const priority = state.priorityItems.has(item);
+      const stats = ITEM_STATS[item] || { love: 0, like: 0, neutral: 0 };
+      const statParts = [
+        stats.love    > 0 ? `<span style="color:var(--love)">♥${stats.love}</span>` : "",
+        stats.like    > 0 ? `<span style="color:var(--like)">★${stats.like}</span>` : "",
+        stats.neutral > 0 ? `<span style="color:var(--muted)">·${stats.neutral}</span>` : "",
+      ].filter(Boolean).join(" ");
+      const esc = item.replace(/'/g, "\\'");
+      html += `<div class="item-row ${removed ? 'removed' : ''}">
+        <button class="item-btn ${removed ? 'removed' : ''}" onclick="toggleItem('${esc}')">
+          <span class="item-name">${item}</span>
+          <span class="item-stats">${statParts}</span>
+        </button>
+        <button class="priority-btn ${priority ? 'active' : ''}" onclick="togglePriorityItem('${esc}')" title="Mark as priority">★</button>
+      </div>`;
     }
   }
-
   if (!html) html = `<div class="no-results">No items match your search</div>`;
   list.innerHTML = html;
 }
@@ -1044,11 +1168,15 @@ function renderVillagers() {
   for (const name of names) {
     const v = VILLAGERS[name];
     const hidden = state.hiddenVillagers.has(name);
+    const priority = state.priorityVillagers.has(name);
     const initials = name.slice(0,2).toUpperCase();
-    html += `<button class="villager-btn ${hidden ? "hidden" : ""}" onclick="toggleVillager('${name}')">
-      <div class="v-avatar" style="background:${v.color}22; color:${v.color}; border-color:${v.color}55;">${initials}</div>
-      ${name}
-    </button>`;
+    html += `<div class="villager-row ${hidden ? 'hidden' : ''}">
+      <button class="villager-btn ${hidden ? 'hidden' : ''}" onclick="toggleVillager('${name}')">
+        <div class="v-avatar" style="background:${v.color}22;color:${v.color};border-color:${v.color}55;">${initials}</div>
+        ${name}
+      </button>
+      <button class="priority-btn ${priority ? 'active' : ''}" onclick="togglePriorityVillager('${name}')" title="Mark as priority">★</button>
+    </div>`;
   }
   if (!html) html = `<div class="no-results">No villagers match</div>`;
   list.innerHTML = html;
@@ -1058,20 +1186,45 @@ function renderResults() {
   const results = document.getElementById("results");
   const visible = Object.keys(VILLAGERS).filter(n => !state.hiddenVillagers.has(n));
 
-  // Score each villager
   const scored = visible.map(name => {
     const { loves, likes, neutrals } = getBestGifts(name, VILLAGERS[name]);
-    let tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : neutrals.length > 0 ? "neutral" : "none";
-    return { name, loves, likes, neutrals, tier };
+    const hasPriorityLove    = loves.some(i => state.priorityItems.has(i));
+    const hasPriorityLike    = likes.some(i => state.priorityItems.has(i));
+    const hasPriorityNeutral = neutrals.some(i => state.priorityItems.has(i));
+    const isPriorityVillager = state.priorityVillagers.has(name);
+
+    // Composite tier score:
+    // 0 = loves a priority item
+    // 1 = loves any item + priority villager
+    // 2 = loves any item
+    // 3 = likes a priority item + priority villager
+    // 4 = likes a priority item
+    // 5 = likes any item + priority villager
+    // 6 = likes any item
+    // 7 = neutral a priority item + priority villager
+    // 8 = neutral a priority item
+    // 9 = neutral any item + priority villager
+    // 10 = neutral any item
+    // 11 = nothing
+    let score;
+    if      (loves.length > 0 && hasPriorityLove)                          score = 0;
+    else if (loves.length > 0 && isPriorityVillager)                       score = 1;
+    else if (loves.length > 0)                                             score = 2;
+    else if (likes.length > 0 && hasPriorityLike && isPriorityVillager)   score = 3;
+    else if (likes.length > 0 && hasPriorityLike)                         score = 4;
+    else if (likes.length > 0 && isPriorityVillager)                       score = 5;
+    else if (likes.length > 0)                                             score = 6;
+    else if (neutrals.length > 0 && hasPriorityNeutral && isPriorityVillager) score = 7;
+    else if (neutrals.length > 0 && hasPriorityNeutral)                   score = 8;
+    else if (neutrals.length > 0 && isPriorityVillager)                   score = 9;
+    else if (neutrals.length > 0)                                         score = 10;
+    else                                                                   score = 11;
+
+    const tier = loves.length > 0 ? "love" : likes.length > 0 ? "like" : neutrals.length > 0 ? "neutral" : "none";
+    return { name, loves, likes, neutrals, tier, score, isPriorityVillager };
   });
 
-  // Sort: love first, then like, then neutral; within tier alphabetical
-  const tierOrder = { love: 0, like: 1, neutral: 2, none: 3 };
-  scored.sort((a, b) => {
-    const td = tierOrder[a.tier] - tierOrder[b.tier];
-    if (td !== 0) return td;
-    return a.name.localeCompare(b.name);
-  });
+  scored.sort((a, b) => a.score !== b.score ? a.score - b.score : a.name.localeCompare(b.name));
 
   if (!scored.length) {
     results.innerHTML = `<div class="no-results">No visible villagers. Show some in the right panel!</div>`;
@@ -1079,40 +1232,38 @@ function renderResults() {
   }
 
   let html = "";
-  for (const { name, loves, likes, neutrals, tier } of scored) {
+  for (const { name, loves, likes, neutrals, tier, isPriorityVillager } of scored) {
     const v = VILLAGERS[name];
     const initials = name.slice(0,2).toUpperCase();
-    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : tier ==="neutral" ? "· NEUTRAL" : "✗ NONE";
+    const tierLabel = tier === "love" ? "♥ LOVES" : tier === "like" ? "★ LIKES" : tier === "neutral" ? "· NEUTRAL" : "✗ NONE";
     const badgeClass = `badge-${tier}`;
+    const priorityMark = isPriorityVillager ? ` <span style="color:var(--gold);font-size:0.7rem;" title="Priority villager">★</span>` : "";
 
-    let gifts = "";
-    for (const item of loves) {
-      gifts += `<span class="gift-pill pill-love">♥ ${item}</span>`;
-    }
-    for (const item of likes) {
-      gifts += `<span class="gift-pill pill-like">★ ${item}</span>`;
-    }
-    if (neutrals.length > 0) {
-      gifts += `<span class="gift-pill pill-neutral">· ${neutrals.join("</span><span class=\"gift-pill pill-neutral\">· ")}</span>`;
-    }
-    if (!gifts) {
-      gifts = `<span style="font-size:0.72rem; color:var(--muted); font-style:italic;">No available items</span>`;
-    }
+    const makePills = (arr, cls, prefix) => arr.map(item => {
+      const star = state.priorityItems.has(item) ? `<span style="color:var(--gold)">★</span> ` : "";
+      return `<span class="gift-pill ${cls}">${prefix}${star}${item}</span>`;
+    }).join("");
+
+    let gifts = makePills(loves, "pill-love", "♥ ")
+              + makePills(likes, "pill-like", "★ ")
+              + makePills(neutrals, "pill-neutral", "· ");
+    if (!gifts) gifts = `<span style="font-size:0.72rem;color:var(--muted);font-style:italic;">No available items</span>`;
 
     html += `<div class="villager-card tier-${tier}">
       <div class="vc-header">
-        <div class="v-avatar" style="background:${v.color}22; color:${v.color}; border-color:${v.color}77;">${initials}</div>
-        <div class="vc-name">${name}</div>
+        <div class="v-avatar" style="background:${v.color}22;color:${v.color};border-color:${v.color}77;">${initials}</div>
+        <div class="vc-name">${name}${priorityMark}</div>
         <div class="vc-tier-badge ${badgeClass}">${tierLabel}</div>
       </div>
       <div class="vc-gifts">${gifts}</div>
     </div>`;
   }
-
   results.innerHTML = html;
 }
 
 function render() {
+  ITEM_STATS = buildItemStats();
+  renderSlotBar();
   renderItems();
   renderVillagers();
   renderResults();
@@ -1120,41 +1271,79 @@ function render() {
 
 // ─── ACTIONS ─────────────────────────────────────────────────────────────────
 
+function switchSlot(i) {
+  currentSlotIdx = i;
+  localStorage.setItem("sdv_currentSlot", i);
+  applySlot(i);
+  render();
+}
+
+function addSlot() {
+  slots.push({ name: `Save ${slots.length}`, removedItems: [], hiddenVillagers: [], priorityItems: [], priorityVillagers: [] });
+  saveSlots();
+  switchSlot(slots.length - 1);
+}
+
+function renameSlot(name) {
+  if (currentSlotIdx === 0) return;
+  slots[currentSlotIdx].name = name || `Save ${currentSlotIdx}`;
+  saveSlots();
+  renderSlotBar();
+  // Restore focus to input after re-render
+  const inp = document.getElementById("slot-name-input");
+  if (inp) { inp.focus(); inp.setSelectionRange(inp.value.length, inp.value.length); }
+}
+
+function deleteSlot() {
+  if (currentSlotIdx === 0 || slots.length <= 1) return;
+  slots.splice(currentSlotIdx, 1);
+  saveSlots();
+  switchSlot(Math.max(0, currentSlotIdx - 1));
+}
+
 function toggleItem(item) {
   if (state.removedItems.has(item)) state.removedItems.delete(item);
   else state.removedItems.add(item);
-  saveState(); render();
+  syncCurrentSlotFromState(); render();
 }
 
 function toggleVillager(name) {
   if (state.hiddenVillagers.has(name)) state.hiddenVillagers.delete(name);
   else state.hiddenVillagers.add(name);
-  saveState(); render();
+  syncCurrentSlotFromState(); render();
+}
+
+function togglePriorityItem(item) {
+  if (state.priorityItems.has(item)) state.priorityItems.delete(item);
+  else state.priorityItems.add(item);
+  syncCurrentSlotFromState(); render();
+}
+
+function togglePriorityVillager(name) {
+  if (state.priorityVillagers.has(name)) state.priorityVillagers.delete(name);
+  else state.priorityVillagers.add(name);
+  syncCurrentSlotFromState(); render();
 }
 
 function setAllItems(include) {
   if (include) state.removedItems.clear();
   else getAllItems().forEach(i => state.removedItems.add(i));
-  saveState(); render();
+  syncCurrentSlotFromState(); render();
 }
 
 function setAllVillagers(show) {
   if (show) state.hiddenVillagers.clear();
   else Object.keys(VILLAGERS).forEach(n => state.hiddenVillagers.add(n));
-  saveState(); render();
+  syncCurrentSlotFromState(); render();
 }
 
 document.getElementById("item-search").addEventListener("input", e => {
-  state.itemSearch = e.target.value;
-  renderItems();
+  state.itemSearch = e.target.value; renderItems();
 });
-
 document.getElementById("villager-search").addEventListener("input", e => {
-  state.villagerSearch = e.target.value;
-  renderVillagers();
+  state.villagerSearch = e.target.value; renderVillagers();
 });
 
-// Initial render
 render();
 </script>
 </body>
