@@ -913,19 +913,22 @@ hates: [""]
 // Item categories with emojis
 const ITEM_CATEGORIES = {
   "💎 Gems & Minerals": [
-    "Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade","Spinel",
+    "Diamond","Ruby","Emerald","Aquamarine","Amethyst","Topaz","Jade",
     "Quartz","Earth Crystal","Frozen Tear","Fire Quartz","Prismatic Shard","Pearl",
     "Tigerseye","Obsidian"
   ],
-  "⛏️ Metals & Bars": [
+  "⛏️ Materials": [
     "Copper Ore","Iron Ore","Gold Ore","Copper Bar","Iron Bar","Gold Bar","Iridium Bar",
-    "Radioactive Bar","Battery Pack","Coal","Stone"
+    "Radioactive Bar","Battery Pack","Coal","Stone","Wood","Hardwood","Clay","Fiber","Sap",
+    "Oak Resin","Pine Tar","Geode","Frozen Geode","Magma Geode","Omni Geode"
+  
   ],
-  "🥕 Vegetables": [
+  "🥕 Fruit & Vegetables": [
     "Parsnip","Potato","Cauliflower","Kale","Green Bean","Garlic","Coffee Bean",
     "Melon","Tomato","Blueberry","Hot Pepper","Radish","Red Cabbage","Starfruit",
     "Corn","Eggplant","Artichoke","Pumpkin","Bok Choy","Amaranth","Grape","Cranberries",
-    "Beet","Sweet Gem Berry","Ancient Fruit","Strawberry","Yam"
+    "Beet","Sweet Gem Berry","Ancient Fruit","Strawberry","Yam","Mango","Orange","Peach","Pomegranate",
+    "Grape","Banana","Apricot","Cherry"
   ],
   "🌸 Flowers & Foraging": [
     "Daffodil","Leek","Dandelion","Tulip","Blue Jazz","Summer Spangle","Sunflower",
@@ -936,52 +939,55 @@ const ITEM_CATEGORIES = {
   ],
   "🌿 Artisan Goods": [
     "Wine","Beer","Mead","Pale Ale","Juice","Pickles","Jelly","Honey","Truffle Oil",
-    "Cloth","Wool","Duck Feather","Rabbit's Foot","Cheese","Goat Cheese","Mayonnaise",
+    "Cloth","Cheese","Goat Cheese","Mayonnaise",
     "Duck Mayonnaise","Void Mayonnaise","Truffle","Aged Roe","Caviar","Oil","Vinegar",
     "Green Tea","Pale Ale","Coffee","Triple Shot Espresso"
   ],
   "🐔 Animal Products": [
     "Egg","Large Egg","Void Egg","Duck Egg","Ostrich Egg","Dinosaur Egg",
-    "Milk","Large Milk","Goat Milk","Large Goat Milk"
+    "Milk","Large Milk","Goat Milk","Large Goat Milk","Wool","Duck Feather","Rabbit's Foot"
   ],
   "🐟 Fish": [
-    "Sardine","Carp","Catfish","Shad","Pike","Woodskip","Sunfish","Bream","Eel",
-    "Octopus","Pufferfish","Ghostfish","Smallmouth Bass","Largemouth Bass","Tiger Trout",
-    "Sturgeon","Lingcod","Halibut","Red Snapper","Tuna","Super Cucumber","Midnight Carp",
-    "Walleye","Albacore","Herring","Squid","Angler","Legend","Mutant Carp","Crimsonfish",
-    "Glacierfish","Ice Pip","Lava Eel","Void Salmon","Lobster","Crab","Snail","Sandfish",
-    "Sea Cucumber","Spookfish","Shrimp","Tiger Trout","Woodskip","Dorado","Lionfish",
-    "Blue Discus","Puffer Fish","Trevally"
+    "Midnight Squid", "Spook Fish", "Blobfish", "Pufferfish", "Anchovy", "Tuna", "Sardine", "Bream", "Largemouth Bass", "Smallmouth Bass", "Rainbow Trout", "Salmon", 
+"Walleye", "Perch",  "Catfish", "Pike", "Sunfish", "Red Mullet", "Herring", "Eel", "Octopus", "Red Snapper", "Squid", "Sea Cucumber", "Super Cucumber", "Ghostfish", 
+"Stonefish", "Ice Pip", "Lava Eel", "Sandfish", "Scorpion Carp", "Flounder", "Midnight Carp", "Sturgeon", "Tiger Trout", "Bullhead", "Tilapia", "Chub", 
+"Dorado", "Albacore", "Shad", "Lingcod", "Halibut", "Woodskip", "Void Salmon", "Slimejack", "Stingray", "Lionfish", "Blue Discus", "Goby", "Crimsonfish", "Angler", 
+"Legend", "Glacierfish", "Mutant Carp", "Son of Crimsonfish", "Ms. Angler", "Legend II", "Glacierfish Jr.", "Radioactive Carp", "Clam", "Lobster", "Crayfish", 
+"Crab", "Cockle", "Mussel", "Shrimp", "Periwinkle", "Oyster", "Seaweed",  "Sea Jelly", "River Jelly", "Cave Jelly", 
+"Carp"
   ],
   "🍳 Cooked Dishes": [
-    "Fried Egg","Omelet","Salad","Cheese Cauliflower","Baked Fish","Parsnip Soup",
-    "Vegetable Medley","Complete Breakfast","Fried Calamari","Strange Bun","Lucky Lunch",
-    "Fried Mushroom","Pizza","Bean Hotpot","Glazed Yams","Carp Surprise","Hashbrowns",
-    "Pancakes","Salmon Dinner","Fish Taco","Crispy Bass","Pepper Poppers","Bread",
-    "Tom Kha Soup","Trout Soup","Chocolate Cake","Pink Cake","Artichoke Dip","Stir Fry",
-    "Roasted Hazelnuts","Pumpkin Pie","Radish Salad","Fruit Salad","Blackberry Cobbler",
-    "Cranberry Candy","Maple Bar","Lobster Bisque","Dish O' The Sea","Miner's Treat",
-    "Roots Platter","Red Plate","Eggplant Parmesan","Rice Pudding","Ice Cream",
-    "Blueberry Tart","Autumn's Bounty","Pumpkin Soup","Super Meal","Cranberry Sauce",
-    "Stuffing","Farmer's Lunch","Survival Burger","Sashimi","Maki Roll","Tortilla",
-    "Escargot","Crab Cakes","Shrimp Cocktail","Banana Pudding","Tropical Curry",
-    "Ginger Ale","Poi","Mango Sticky Rice","Poppyseed Muffin","Fiddlehead Risotto",
-    "Spicy Eel","Fried Eel","Rhubarb Pie","Plum Pudding","Piña Colada","Spaghetti",
-    "Fried Calamari"
+    "Omelet", "Salad", "Cheese Cauliflower", "Baked Fish", "Parsnip Soup", "Vegetable Medley", "Complete Breakfast", "Fried Calamari", "Strange Bun", "Lucky Lunch", 
+"Fried Mushroom", "Pizza", "Bean Hotpot", "Glazed Yams", "Carp Surprise", "Hashbrowns", "Pancakes", "Salmon Dinner", "Fish Taco", "Crispy Bass", "Pepper Poppers", 
+"Tom Kha Soup", "Trout Soup", "Chocolate Cake", "Pink Cake", "Rhubarb Pie", "Cookie", "Spaghetti", "Fried Eel", "Spicy Eel", "Sashimi", "Maki Roll", "Tortilla", "Red Plate", 
+"Eggplant Parmesan", "Rice Pudding", "Ice Cream", "Blueberry Tart", "Autumn's Bounty", "Pumpkin Soup", "Super Meal", "Cranberry Sauce", "Stuffing", "Farmer's Lunch", "Survival Burger", 
+"Dish O' The Sea", "Miner's Treat", "Roots Platter", "Triple Shot Espresso", "Seafoam Pudding", "Algae Soup", "Pale Broth", "Plum Pudding", "Artichoke Dip", "Stir Fry", 
+"Roasted Hazelnuts", "Pumpkin Pie", "Radish Salad", "Fruit Salad", "Blackberry Cobbler", "Cranberry Candy", "Bruschetta", "Coleslaw", "Fiddlehead Risotto", "Poppyseed Muffin", 
+"Chowder", "Fish Stew", "Escargot", "Lobster Bisque", "Maple Bar", "Crab Cakes", "Shrimp Cocktail", "Ginger Ale", "Banana Pudding", "Mango Sticky Rice", "Poi", "Tropical Curry", 
+"Squid Ink Ravioli", 
   ],
-  "🗑️ Junk & Misc": [
-    "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola","Driftwood",
-    "Mixed Seeds","Slime","Bat Wing","Solar Essence","Void Essence",
-    "Wood","Hardwood","Fiber","Stone","Coal"
+  "Monster Bits": [
+    "Solar Essence","Void Essence","Bat Wing","Slime",
+  ],
+  "Artifacts":[
+    "Dwarf Scroll I", "Dwarf Scroll II", "Dwarf Scroll III", "Dwarf Scroll IV", "Chipped Amphora", "Arrowhead", "Ancient Doll", "Elvish Jewelry", "Chewing Stick", "Ornamental Fan", 
+"Dinosaur Egg", "Rare Disc", "Ancient Sword", "Rusty Spoon", "Rusty Spur", "Rusty Cog", "Chicken Statue", "Ancient Seed", "Prehistoric Tool", "Dried Starfish", "Anchor", 
+"Glass Shards", "Bone Flute", "Prehistoric Handaxe", "Dwarvish Helm", "Dwarf Gadget", "Ancient Drum", "Golden Mask", "Golden Relic", "Strange Doll", "Strange Doll", 
+"Prehistoric Scapula", "Prehistoric Tibia", "Prehistoric Skull", "Skeletal Hand", "Prehistoric Rib", "Prehistoric Vertebra", "Skeletal Tail", "Nautilus Fossil", "Amphibian Fossil", 
+"Palm Fossil", "Trilobite",
+  ],
+  "Books": [
+  "Bait And Bobber", "Book Of Stars", "Combat Quarterly", "Mining Monthly", "Stardew Valley Almanac", "Woodcutter's Weekly", "Queen Of Sauce Cookbook", "Mapping Cave Systems", 
+"Way Of The Wind pt. 1", "Way Of The Wind pt. 2", "Monster Compendium", "Friendship 101", "Jack Be Nimble, Jack Be Thick", "Woody's Secret", "Raccoon Journal", "Jewels Of The Sea", 
+"Dwarvish Safety Manual", "The Art O' Crabbing", "The Alleyway Buffet", "The Diamond Hunter", "Book of Mysteries", "Horse: The Book", "Treasure Appraisal Guide", "Ol' Slitherlegs", "Animal Catalogue", 
   ],
   "✨ Special Items": [
     "Prismatic Shard","Pearl","Rabbit's Foot","Golden Pumpkin","Magic Rock Candy",
-    "Geode","Frozen Geode","Magma Geode","Omni Geode","Dwarvish Helm",
-    "Dwarf Scroll I","Dwarf Scroll II","Dwarf Scroll III","Dwarf Scroll IV","Dwarf Gadget",
-    "Ancient Doll","Battery Pack","Solar Essence","Void Essence","Bat Wing","Slime",
-    "Driftwood","Joja Cola","Mango","Orange","Peach","Pomegranate",
-    "Grape","Banana","Apricot","Cherry"
-  ]
+  ],
+  "🗑️ Junk": [
+    "Trash","Soggy Newspaper","Broken CD","Broken Glasses","Joja Cola","Driftwood",
+    "Mixed Seeds",
+  ],
 };
 
 (function() {
