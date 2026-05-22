@@ -8,25 +8,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #1a1a2e;
-    --panel: #16213e;
-    --card: #0f3460;
+    --bg: #0f1a0f;
+    --panel: #111a11;
+    --card: #0f2a0f;
     --accent: #e94560;
     --gold: #f5c842;
     --green: #4caf50;
     --blue: #5bc0eb;
     --purple: #9b5de5;
     --pink: #f15bb5;
-    --muted: #8899aa;
+    --muted: #7a9a7a;
     --text: #e8e8f0;
-    --textdim: #aabbcc;
-    --border: #2a3a5e;
+    --textdim: #9ab89a;
+    --border: #1e3a1e;
     --love: #ff6b9d;
     --like: #ffd166;
     --neutral: #6c757d;
     --dislike: #a0522d;
     --hate: #c0392b;
-    --removed: #2a2a4a;
+    --removed: #1a2a1a;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,7 +43,7 @@
     text-align: center;
     padding: 1.2rem 1rem 0.8rem;
     border-bottom: 2px solid var(--gold);
-    background: #12122a;
+    background: #0a140a;
     position: relative;
   }
 
@@ -98,7 +98,7 @@
     color: var(--gold);
     padding: 0.7rem 0.8rem 0.5rem;
     border-bottom: 1px solid var(--border);
-    background: #12122a;
+    background: #0a140a;
     position: sticky;
     top: 0;
     z-index: 10;
@@ -126,7 +126,7 @@
 
   .search-wrap input {
     width: 100%;
-    background: #0a0a1f;
+    background: #091209;
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--text);
@@ -161,7 +161,7 @@
     position: relative;
   }
 
-  .item-btn:hover { border-color: var(--gold); background: #1a3060; }
+  .item-btn:hover { border-color: var(--gold); background: #0f2a10; }
 
   .item-btn.removed {
     background: var(--removed);
@@ -205,7 +205,7 @@
     transition: all 0.12s;
   }
 
-  .villager-btn:hover { border-color: var(--blue); }
+  .villager-btn:hover { border-color: var(--green); }
 
   .villager-btn.hidden {
     background: var(--removed);
@@ -229,7 +229,7 @@
   .center-panel {
     overflow-y: auto;
     padding: 0.6rem;
-    background: #13132a;
+    background: #0c180c;
   }
 
   .center-header {
@@ -358,7 +358,7 @@
 
   .mini-btn {
     font-size: 0.65rem;
-    background: #0a0a1f;
+    background: #091209;
     border: 1px solid var(--border);
     border-radius: 3px;
     color: var(--textdim);
@@ -380,7 +380,7 @@
   .slot-bar-panel {
     border-bottom: 1px solid var(--border);
     padding: 0.35rem 0.5rem;
-    background: #0d0d25;
+    background: #0a150a;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -403,7 +403,7 @@
     font-family: 'Nunito', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
-    background: #0a0a1f;
+    background: #091209;
     border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--textdim);
@@ -413,9 +413,11 @@
     white-space: nowrap;
   }
   .slot-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .slot-btn.slot-active { background: #2a2a0a; border-color: var(--gold); color: var(--gold); }
+  .slot-btn.slot-active { background: #0a220a; border-color: var(--gold); color: var(--gold); }
 
   /* Item and villager rows with priority button */
+  .select-all-wrap { flex-wrap: wrap; gap: 4px; }
+  .view-btn.active-view { border-color: var(--gold); color: var(--gold); background: #0a220a; }
   .item-row {
     display: flex; align-items: center; gap: 3px; margin-bottom: 3px;
   }
@@ -433,7 +435,7 @@
 
   .priority-btn {
     flex-shrink: 0; width: 24px; height: 24px;
-    background: #0a0a1f; border: 1px solid var(--border); border-radius: 4px;
+    background: #091209; border: 1px solid var(--border); border-radius: 4px;
     color: #3a3a5a; font-size: 0.75rem; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     transition: all 0.12s; padding: 0; line-height: 1;
@@ -459,7 +461,7 @@
   <div class="stars stars-left">⭐🌟</div>
   <h1>Stardew Valley<br>Gift Planner</h1>
   <p>Toggle items you have · Toggle villagers you care about · See the best gifts</p>
-  <p style="font-size:0.55rem; color:#445; margin-top:0.35rem; letter-spacing:0.3px;">Made with <a href="https://claude.ai" style="color:#667788; text-decoration:none;">Claude</a></p>
+  <p style="font-size:0.55rem; color:#344; margin-top:0.35rem; letter-spacing:0.3px;">Made with <a href="https://claude.ai" style="color:#4a7755; text-decoration:none;">Claude</a></p>
   <div class="stars stars-right">🌟⭐</div>
 </header>
 
@@ -476,6 +478,10 @@
     <div class="select-all-wrap">
       <button class="mini-btn" onclick="setAllItems(true)">All in</button>
       <button class="mini-btn" onclick="setAllItems(false)">All out</button>
+      <span style="flex:1"></span>
+      <button class="mini-btn view-btn" id="view-cat"   onclick="setItemView('category')"  title="Group by category">≡ Cat</button>
+      <button class="mini-btn view-btn" id="view-alpha" onclick="setItemView('alpha')"     title="Alphabetical">A–Z</button>
+      <button class="mini-btn view-btn" id="view-smart" onclick="setItemView('smart')"     title="Owned &amp; priority first">★ Smart</button>
     </div>
     <div id="item-slot-bar" class="slot-bar-panel"></div>
     <div class="item-list" id="item-list"></div>
@@ -1009,7 +1015,8 @@ let activeVillagerSlot = Math.min(parseInt(localStorage.getItem("sdv_active_vill
 const state = {
   removedItems: new Set(), hiddenVillagers: new Set(),
   priorityItems: new Set(), priorityVillagers: new Set(),
-  itemSearch: "", villagerSearch: ""
+  itemSearch: "", villagerSearch: "",
+  itemView: localStorage.getItem("sdv_item_view") || "category"
 };
 
 function applyItemSlot(idx) {
@@ -1159,37 +1166,87 @@ function renderSlotBar(containerId, slots, activeIdx, switchFn, addFn, renameFn,
   let html = '<div class="slot-bar-row"><span class="slot-bar-label">SAVE</span>';
   for (let i = 0; i < slots.length; i++)
     html += '<button onclick="' + switchFn + '(' + i + ')" class="slot-btn' + (i === activeIdx ? ' slot-active' : '') + '">' + esc(slots[i].name) + '</button>';
-  html += '<button onclick="' + addFn + '()" class="slot-btn" style="color:var(--gold);border-color:#3a3a1a;" title="New slot">＋</button></div>';
+  html += '<button onclick="' + addFn + '()" class="slot-btn" style="color:var(--gold);border-color:#1a3a1a;" title="New slot">＋</button></div>';
   if (activeIdx >= 0 && activeIdx < slots.length)
-    html += '<div class="slot-bar-row"><input type="text" value="' + esc(slots[activeIdx].name) + '" onchange="' + renameFn + '(this.value)" maxlength="20" style="flex:1;min-width:0;background:#0a0a1f;border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:\'Nunito\',sans-serif;font-size:0.72rem;padding:2px 6px;outline:none;" placeholder="Slot name\u2026"><button onclick="' + deleteFn + '()" class="slot-btn" style="color:#c0392b;border-color:#5a2a2a;flex-shrink:0;" title="Delete">\u2715</button></div>';
+    html += '<div class="slot-bar-row"><input type="text" value="' + esc(slots[activeIdx].name) + '" onchange="' + renameFn + '(this.value)" maxlength="20" style="flex:1;min-width:0;background:#091209;border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:\'Nunito\',sans-serif;font-size:0.72rem;padding:2px 6px;outline:none;" placeholder="Slot name\u2026"><button onclick="' + deleteFn + '()" class="slot-btn" style="color:#c0392b;border-color:#5a2a2a;flex-shrink:0;" title="Delete">\u2715</button></div>';
   bar.innerHTML = html;
 }
 
 function renderItemSlotBar()     { renderSlotBar("item-slot-bar",     itemSlots,     activeItemSlot,     "switchItemSlot",     "addItemSlot",     "renameItemSlot",     "deleteItemSlot");     }
 function renderVillagerSlotBar() { renderSlotBar("villager-slot-bar", villagerSlots, activeVillagerSlot, "switchVillagerSlot", "addVillagerSlot", "renameVillagerSlot", "deleteVillagerSlot"); }
 
+function itemPill(item) {
+  const removed = state.removedItems.has(item);
+  const priority = state.priorityItems.has(item);
+  const st = ITEM_STATS[item] || { love:0, like:0, neutral:0 };
+  const statParts = [
+    st.love    > 0 ? '<span style="color:var(--love)">\u2665' + st.love    + '</span>' : '',
+    st.like    > 0 ? '<span style="color:var(--like)">\u2605' + st.like    + '</span>' : '',
+    st.neutral > 0 ? '<span style="color:var(--muted)">\u00b7' + st.neutral + '</span>' : '',
+  ].filter(Boolean).join(' ');
+  const e = item.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  return '<div class="item-row' + (removed ? ' removed' : '') + '">'
+    + '<button class="item-btn' + (removed ? ' removed' : '') + '" onclick="toggleItem(\'' + e + '\')">'
+    + '<span class="item-name">' + item + '</span>'
+    + '<span class="item-stats">' + statParts + '</span></button>'
+    + '<button class="priority-btn' + (priority ? ' active' : '') + '" onclick="togglePriorityItem(\'' + e + '\')" title="Priority">\u2605</button>'
+    + '</div>';
+}
+
+function setItemView(mode) {
+  state.itemView = mode;
+  localStorage.setItem("sdv_item_view", mode);
+  renderItems();
+}
+
 function renderItems() {
   const list = document.getElementById("item-list");
   const search = state.itemSearch.toLowerCase();
-  let html = "";
-  for (const [cat, items] of Object.entries(ITEM_CATEGORIES)) {
-    const filtered = search ? items.filter(i => i.toLowerCase().includes(search)) : items;
-    if (!filtered.length) continue;
-    html += '<div class="item-cat">' + cat + '</div>';
-    for (const item of filtered) {
-      const removed = state.removedItems.has(item);
+
+  // Update active view button highlight
+  ['category','alpha','smart'].forEach(m => {
+    const btn = document.getElementById('view-' + m);
+    if (btn) btn.classList.toggle('active-view', state.itemView === m);
+  });
+
+  const allItems = getAllItems().filter(i => !search || i.toLowerCase().includes(search));
+  if (!allItems.length) { list.innerHTML = '<div class="no-results">No items match your search</div>'; return; }
+
+  let html = '';
+
+  if (state.itemView === 'alpha') {
+    const sorted = [...allItems].sort((a,b) => a.localeCompare(b));
+    for (const item of sorted) html += itemPill(item);
+
+  } else if (state.itemView === 'smart') {
+    // owned+priority > owned > priority > neither
+    const groups = [[],[],[],[]];
+    for (const item of allItems) {
+      const owned    = !state.removedItems.has(item);
       const priority = state.priorityItems.has(item);
-      const st = ITEM_STATS[item] || { love:0, like:0, neutral:0 };
-      const statParts = [
-        st.love    > 0 ? '<span style="color:var(--love)">\u2665' + st.love    + '</span>' : '',
-        st.like    > 0 ? '<span style="color:var(--like)">\u2605' + st.like    + '</span>' : '',
-        st.neutral > 0 ? '<span style="color:var(--muted)">\u00b7' + st.neutral + '</span>' : '',
-      ].filter(Boolean).join(' ');
-      const e = item.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-      html += '<div class="item-row' + (removed ? ' removed' : '') + '"><button class="item-btn' + (removed ? ' removed' : '') + '" onclick="toggleItem(\'' + e + '\')"><span class="item-name">' + item + '</span><span class="item-stats">' + statParts + '</span></button><button class="priority-btn' + (priority ? ' active' : '') + '" onclick="togglePriorityItem(\'' + e + '\')" title="Priority">\u2605</button></div>';
+      if (owned && priority)   groups[0].push(item);
+      else if (owned)          groups[1].push(item);
+      else if (priority)       groups[2].push(item);
+      else                     groups[3].push(item);
+    }
+    const labels = ['\u2b50 Owned & Priority', '\u2713 Owned', '\u2605 Priority (not owned)', '\u00b7 Other'];
+    for (let g = 0; g < 4; g++) {
+      if (!groups[g].length) continue;
+      groups[g].sort((a,b) => a.localeCompare(b));
+      html += '<div class="item-cat">' + labels[g] + '</div>';
+      for (const item of groups[g]) html += itemPill(item);
+    }
+
+  } else {
+    // Category view (default)
+    for (const [cat, items] of Object.entries(ITEM_CATEGORIES)) {
+      const filtered = search ? items.filter(i => i.toLowerCase().includes(search)) : items;
+      if (!filtered.length) continue;
+      html += '<div class="item-cat">' + cat + '</div>';
+      for (const item of filtered) html += itemPill(item);
     }
   }
-  if (!html) html = '<div class="no-results">No items match your search</div>';
+
   list.innerHTML = html;
 }
 
